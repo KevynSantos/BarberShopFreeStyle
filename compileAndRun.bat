@@ -1,0 +1,1 @@
+java -jar E:\workspace-kevyn\BarberShopFreeStyle\target\BarberShopFreeStyle-0.0.1-SNAPSHOT.jar

@@ -1,0 +1,94 @@
+td
+{
+	color: white;
+	font-size: 18px;
+	
+}
+
+.form_login
+{
+	border: 1px white solid;
+	position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%, -50%);
+    border-radius: 7px;
+    height: 270px;
+    width: 350px;
+   
+}
+
+.title_login
+{
+	
+	text-align: center;
+	padding-left: 90px;
+	padding-bottom: 40px;
+	padding-top: 30px;
+	font-weight: bold;
+}
+
+.field_login_senha
+{
+	padding-top: 5px;
+    padding-left: 60px;
+}
+
+.td_btn_submit_reset
+{
+	padding-top: 40px;
+    padding-left: 85px;
+}
+
+.td_btn_submit_reset button
+{
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+.btn_submit_reset
+{
+	color: black;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #3E3E3E;
+    border-radius: 3px;
+    background-color: white;
+    font-weight: 500;
+}
+
+.title_project
+{
+	margin-top: 50px;
+	color: white;
+	font-size: 73px;
+	text-align: center;
+	font-family: Fantasy , Copperplate;
+}
+
+.btn_submit_cancel
+{
+	padding-top: 30px;
+}
+
+.btn_ok
+{
+	background: black;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 15px;
+    margin-bottom: 0;
+}
+
+.spacing
+{
+	margin-left: 8px;
+}
+
+#login
+{
+	width: 177px;
+	height: 21px;
+}

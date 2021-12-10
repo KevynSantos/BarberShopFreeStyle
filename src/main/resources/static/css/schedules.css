@@ -1,0 +1,329 @@
+.title_project
+{
+	margin-top: 50px;
+	color: white;
+	font-size: 73px;
+	text-align: center;
+	font-family: Fantasy , Copperplate;
+}
+.table_login
+{
+	color: white;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+}
+
+.div_table_login
+{
+	transform: translate(-50%, -80%);
+	position: absolute;
+    left: 90%;
+    border: 2px white solid;
+    width: 200px;
+    height:  200px;
+}
+
+.td_login
+{
+	border-bottom: 1px solid white;
+}
+
+a {
+  color: white;
+  text-decoration: none; /* no underline */
+}
+
+.div_form_schedules
+{
+	border: 5px white solid;
+	transform: translate(-50%, -50%);
+	position: absolute;
+    left: 50%;
+    width: 660px;
+    height: 520px;
+    border-radius: 8px;
+    margin-top: 220px;
+}
+
+p {
+	color: white;
+	font-size: 20px;
+	
+	
+}
+
+.subtitle_schedules
+{
+	color: white;
+	text-align: center;
+	font-size: 30px;
+}
+
+.btn_service_return
+{
+	color: black;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #3E3E3E;
+    border-radius: 3px;
+    background-color: white;
+    font-weight: 500;
+}
+
+.btn_service_add
+{
+	color: black;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #3E3E3E;
+    border-radius: 3px;
+    background-color: white;
+    font-weight: 500;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.table_pagination_schedules
+{
+	
+	color: white;
+}
+
+.table_pagination_schedules th
+{
+	font-size: 18px;
+	border-bottom: 3px solid white;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	text-align: center;
+}
+
+.table_pagination_schedules td
+{
+	font-size: 18px;
+	border-bottom: 1px solid white;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	text-align: center;
+}
+
+.pagination-container {
+  display: inline-block;
+  margin-top: 40px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 48.5%;
+}
+
+.pagination-container li {
+  float: left;
+  padding: 8px 16px;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination-container li.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+li {
+  list-style-type: none;
+}
+
+.btn_schedules_return
+{
+	color: black;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #3E3E3E;
+    border-radius: 3px;
+    background-color: white;
+    font-weight: 500;
+    margin-left: 300px;
+    margin-top: 25px;
+}
+
+.btn_filter
+{
+	color: black;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #3E3E3E;
+    border-radius: 3px;
+    background-color: white;
+    font-weight: 500;
+    margin-left: 74%;
+    position: absolute;
+}
+
+
+.grid_properties_pagination
+{
+	color: white;
+	display:grid;
+	grid-template-columns: 30% 70%;
+	
+}
+
+.label_total_counts
+{
+	margin-left: 520px;
+	margin-top: 30px;
+	text-align: left;
+}
+
+.label_total_counts div
+{
+	width: 250px;
+}
+
+.select_count
+{
+	width: 50px;
+}
+
+.grid_filter_services, .grid_edit_schedules
+{
+	display: grid;
+    width: 100%;
+    grid-template-columns: 250px 250px;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.grid_edit_schedules div
+{
+	margin-top: 10px;
+}
+
+.grid_filter_services div {
+    padding-top: 15px;
+}
+
+.select-filtro {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+.text-filtro {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+.btn_ok, .btn_filter_submit, .btn_close, .btn_ok_requests_show, .btn_ok_description, .btn_ok_close_erase, .btn_ok_close_checkin,.btn_ok_close_final_scheduled,.btn_update,.btn_source_request,.btn_update_request
+{
+	background: black;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 15px;
+    margin-bottom: 0;
+}
+
+.table-data-abertura {
+    width: 100%;
+    height: 45px;
+    border: 1px solid black;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-collapse: separate;
+}
+
+.table-data-abertura input
+{
+	width: 85px;
+}
+
+.table-hora-abertura {
+    width: 100%;
+    height: 45px;
+    border: 1px solid black;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-collapse: separate;
+}
+
+.table-hora-abertura input
+{
+	width: 85px;
+}
+
+.btn_submit_cancel button
+{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.ui-timepicker-container{z-index:1151 !important;}
+
+.img_details_service
+{
+	height: 20px;
+	width: 20px;
+}
+
+.img_details_service_balon
+{
+	height: 15px;
+	width: 15px;
+}
+
+.img_erase
+{
+	margin-top: 4px;
+	height: 36px;
+	width: 38px;
+}
+
+.img_checkin
+{
+	height: 33px;
+	width: 33px;
+	margin-left: 6px;
+}
+
+.img_schedule_final
+{
+	height: 35px;
+	width: 35px;
+}
+
+.img_edit
+{
+	margin-right: 7px;
+}
+.grid-request
+{
+	display:grid;
+	grid-template-columns: 50% 50%;
+	color: black;
+}
+.requests_add_content
+{
+	border-left: 2px solid black;
+}
+
+.btn_excel,.btn_pdf
+{
+	margin-left: 20px;
+}
+
+.pagination_count_bottom {
+    width: 600px;
+}

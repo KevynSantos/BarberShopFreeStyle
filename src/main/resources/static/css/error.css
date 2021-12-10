@@ -1,0 +1,10 @@
+.btn_ok_error
+{
+	background: black;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 15px;
+    margin-bottom: 0;
+}
