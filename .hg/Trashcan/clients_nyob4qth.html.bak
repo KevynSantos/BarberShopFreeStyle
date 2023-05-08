@@ -1,0 +1,322 @@
+<html>
+<head>
+<style>
+body {
+ background-color: black;
+ background-repeat: no-repeat;
+ background-size: 100% 100%; 
+}
+</style>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/clients.css">
+<link rel="stylesheet" href="bootstrap-3.3.0/bootstrap.min.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/toastr.css">
+<link rel="stylesheet" href="css/utils.css">
+<link rel="stylesheet" href="css/error.css">
+<link rel="stylesheet" href="css/jquery.loadingModal.css">
+<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/toastr.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.0/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/pagination.min.js"></script>
+<script type="text/javascript" src="js/clients.js"></script>
+<script type="text/javascript" src="js/paginationListBuilder.js"></script>
+<script type="text/javascript" src="js/error.js"></script>
+<script type="text/javascript" src="js/jquery.loadingModal.js"></script>
+<script type="text/javascript" src="js/Validation.js"></script>
+<script type="text/javascript" src="js/ChangeData.js"></script>
+<script type="text/javascript" src="js/RememberFilter.js"></script>
+</head>
+<body>
+<p class="title_project">Barber Shop FreeStyle</p>
+<div class="div_table_login">
+<table  class="table_login">
+<tr><th>Bem vindo(a): <br> <br> <label th:text="${user.login}"></label><br> <br> 
+	<span th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><label class="typeProfileAdministrador">GESTOR</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='BARBEIRO'}"><label class="typeProfileBarbeiro">BARBEIRO</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='PEDICURE'}"><label class="typeProfilePedicure">PEDICURE</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='CABELEIREIRO'}"><label class="typeProfileCabelereiro">CABELEIREIRO</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='MANICURE'}"><label class="typeProfileManicure">MANICURE</label></span>
+</th></tr>
+<tr><td><hr></td></tr>
+<tr><td class="td_login"><a href='#' class='changeDataBtn'>Alterar Dados</a></td></tr>
+<tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a href='/management' onClick="localStorage.clear();">Gestão</a></td></tr>
+<tr><td><a href="/us/logoff" onClick="localStorage.clear();">Sair</a></td></tr>
+</table>
+</div>
+	
+		<div class="grid-header-filter">
+			<div>
+				<span class="subtitle_clients">Clientes</span>
+				<div class='div_add_user'><a href="#"><img src="/img/addUser.png" class="addUser" width="70" height="70"></a>
+				<button type="button" class="btn_filter">Filtro</button></div>
+			</div>
+		</div>
+	
+	
+	<table class="table_pagination_clients" align="center" cellspacing="0" >
+		<thead>
+			<tr><th>Nome</th><th>CPF</th><th>Dt. Nascimento</th><th>E-mail</th><th>Telefone</th><th>Endereço</th><th>Ações</th></tr>
+		</thead>
+		<tbody id="registros_tabela">
+			
+		</tbody>
+	</table>
+	<div class="grid_properties_pagination" align="center">
+		<div class="pagination-container">
+  		 
+		</div>
+	
+		<div class="pagination_count_bottom"><a href="/home"><button type="button" class="btn_clients_return" onClick="localStorage.clear();">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf" title="Download do Relatório PDF"/></a></div> 
+		
+		<div class="label_total_counts">
+			<div><label>Resultados por página:</label>
+				<select class="select_count">
+					<option value="10">10</option>
+					<option value="30">30</option>
+					<option value="50">50</option>
+				</select>
+			</div>
+			<div><label>Total de Resultados: </label> <span id="count_results"></span></div>
+		</div>
+	</div>
+	
+	<form id="form_newClientModal">
+		<div id="newClientModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Adicionar Cliente</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    	
+			    		<div class="grid_new_client">
+			    			
+			    			<div>
+			    				Nome<br>
+			    				<input type="text" class="text-filtro" name="text_new_name" id="text_new_name">
+			    			</div>
+			    			
+			    			<div>
+			    				Sobrenome<br>
+			    				<input type="text" class="text-filtro" name="text_new_sobrenome" id="text_new_sobrenome">
+			    			</div>
+			    			
+			    			<div>
+			    				CPF<br>
+			    				<input type="text" class="text-filtro" id="text_new_cpf" name="text_new_cpf">
+			    			</div>
+			    			
+			    			<div>
+			    				Data de Nascimento<br>
+			    				<input type="date" class="text-filtro" id="text_new_data_nascimento" name="text_new_data_nascimento">
+			    			</div>
+			    			
+			    			<div>
+			    				E-mail<br> 
+			    				<input type="text" class="text-filtro" id="text_new_email" name="text_new_email">
+			    			</div>
+			    			
+			    			<div>
+			    				Telefone<br>
+			    				<input type="text" class="text-filtro telefone" id="text_new_telefone"  name="text_new_telefone">
+			    			</div>
+			    		</div>
+			    		
+			    		<div class="grid_new_client">
+				    		<div>
+				    				Endereço<br>
+				    				<textarea rows="5" cols="68" name="text_new_endereco" id="text_new_endereco"></textarea>
+				    		</div>
+				    	</div>
+			    			
+			    			
+			    		
+			    	
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" class="btn_submit_client">Cadastrar</button><button type="button" class="btn_cancel_new_client">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+		</div>
+	</form>
+	<div id="addressInfoModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div id="modal-content-continue" class="modal-content modal-continue">
+		    	<div class="modal-header">
+		    		<h3>Endereço</h3>
+		    	</div>
+		    	
+		    	<div class="modal-body">
+		    	
+		    	<label id='lbl_info_adress'></label>
+		    	
+		    	
+		    			
+		    	</div>
+		    	<div class="modal-footer">
+		    		<div class="btn_submit_cancel"><button type="button" class="btn_ok">OK</button></div>
+		    	</div>
+		    </div>
+		    	
+		    	
+		    	
+		 </div>
+	</div>
+	<form id="form_clientes_filter">
+		<div id="filterClients" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Filtro</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    		<div class="grid_filter_clients" >
+			    			<div>
+			    				Nome<br>
+			    				<input type="text" name="text_nome" id="text_nome" class="text-filtro">
+			    			</div>
+			    			
+			    			<div>
+			    				CPF<br>
+			    				<input type="text" name="text_cpf" id="text_cpf" class="text-filtro">
+			    			</div>
+			    			
+			    			<div>
+			    				Data de Nascimento<br>
+			    				<table class="table-data-abertura">
+										<tbody><tr>
+											<td>De:<input type="text" id="data_inicial" name="text_data_inicial" class="text_data_abertura " autocomplete="off"></td>
+											<td>Até:<input type="text" id="data_final" name="text_data_final" class="text_data_abertura " autocomplete="off"></td>
+										</tr>
+									</tbody></table>
+			    			</div>
+			    			<div>
+			    				E-mail<br>
+			    				<input type="text" name="text_email" id="text_email" class="text-filtro">
+			    			</div>
+			    			<div>
+			    				Telefone<br>
+			    				<input type="text" name="text_telefone" id="text_telefone" class="text-filtro telefone">
+			    			</div>
+			    			<div>
+			    				Endereço<br>
+			    				<input type="text" name="text_endereco" id="text_endereco" class="text-filtro">
+			    			</div>
+			    		</div>
+			    	
+			    	
+			    		
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" class="btn_filter_submit">Filtrar</button><button type="reset" class="btn_filter_erase">Limpar</button><button type="button" class="btn_ok">Fechar</button></div>
+			    	</div>
+			    </div>
+			    	
+			   
+			    	
+			 </div>
+		</div>
+	</form>
+	
+	<form action="/client/delete" method="POST">
+			<div id="eraseModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+				  <div class="modal-dialog" role="document">
+				    <div id="modal-content-continue" class="modal-content modal-continue">
+				    	<div class="modal-header">
+				    		<h3>Exclusão</h3>
+				    	</div>
+				    	
+				    	<div class="modal-body">
+				    	
+				    		<h5>Deseja excluir esse Cliente?</h5><br>
+				    		<p class="mesagem_excluir_cliente"><b>Obs</b>: Ao excluir o cliente, os serviços e agendamentos vinculados serão perdidos.</p>	
+				    		<input type="hidden" value='' id="idClientErase" name="idClientErase">
+				    			
+				    	</div>
+				    	<div class="modal-footer">
+				    		<div class="btn_submit_cancel"><button type="submit" class="btn_ok_erase">Excluir</button><button type="button" class="btn_ok_close_erase">Fechar</button></div>
+				    	</div>
+				    </div>
+				    	
+				   
+				    	
+				 </div>
+			</div>
+		</form>
+		
+		
+		<div id="editClients" class="modal modal-group fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div id="modal-content-continue" class="modal-content modal-continue">
+		    	<div class="modal-header">
+		    		<h3>Editar Cliente</h3>
+		    	</div>
+		    	
+		    	<div class="modal-body">
+		    	
+		    		<div class="grid_edit_clients">
+			    			
+			    			<div>
+			    				Nome<br>
+			    				<input type="text" name="text_edit_nome" id="text_edit_nome" class="text-filtro">
+			    			</div>
+			    			
+			    			<div>
+			    				Sobrenome<br>
+			    				<input type="text" name="text_edit_sobrenome" id="text_edit_sobrenome" class="text-filtro">
+			    			</div>
+			    			
+			    			<div>
+			    				CPF<br>
+			    				<input type="text" name="text_edit_cpf" id="text_edit_cpf" class="text-filtro">
+			    			</div>
+			    			
+			    			<div>
+			    				Dt.Nascimento<br>
+			    				<input type="date" name="text_edit_data_nascimento" id="text_edit_data_nascimento" class="text-filtro">
+			    			</div>
+			    			
+			    			<div>
+			    				E-mail<br>
+			    				<input type="text" name="text_edit_email" id="text_edit_email" class="text-filtro">
+			    			</div>
+			    			
+			    			<div>
+			    				Telefone<br>
+			    				<input type="text" name="text_edit_telefone" id="text_edit_telefone" class="text-filtro telefone">
+			    			</div>
+		    		
+		    		</div>
+		    		
+		    		<div class="grid_clients_description">
+						<div>Endereço:</div>
+						<div><textarea rows="5" cols="68" maxlength="100" id="text_edit_endereco" name="text_edit_endereco"></textarea></div>
+					</div>
+		    	
+		    		<input type="hidden" value='' id="idClientUpdate" name="idClientUpdate">
+		    			
+		    	</div>
+		    	<div class="modal-footer">
+		    		<div class="btn_submit_cancel"><button type="button" class="btn_update">Atualizar</button><button type="button" class="btn_close">Cancelar</button></div>
+		    	</div>
+		    </div>
+		    	
+		    	
+		    	
+		 </div>
+	</div>
+</body>
+</html>

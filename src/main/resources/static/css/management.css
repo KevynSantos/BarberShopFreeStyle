@@ -1,0 +1,458 @@
+.title_project
+{
+	margin-top: 50px;
+	color: white;
+	font-size: 73px;
+	text-align: center;
+	font-family: Fantasy , Copperplate;
+}
+.table_login
+{
+	color: white;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+}
+
+.div_table_login
+{
+	transform: translate(-50%, -80%);
+	position: absolute;
+    left: 90%;
+    border: 2px white solid;
+    width: 200px;
+    height:  200px;
+}
+
+.td_login
+{
+	border-bottom: 1px solid white;
+}
+
+a {
+  color: white;
+  text-decoration: none; /* no underline */
+}
+.btn_clients_return
+{
+	color: black;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #3E3E3E;
+    border-radius: 3px;
+    background-color: white;
+    font-weight: 500;
+    margin-left: 300px;
+    margin-top: 25px;
+}
+.subtitle_management
+{
+	color: white;
+	text-align: center;
+	font-size: 30px;
+}
+.table_pagination_managements
+{
+	
+	color: white;
+}
+
+.table_pagination_managements th
+{
+	font-size: 18px;
+	border-bottom: 3px solid white;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	text-align: center;
+}
+
+.table_pagination_managements td
+{
+	font-size: 18px;
+	border-bottom: 1px solid white;
+	padding-left: 25px;
+	padding-right: 15px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	text-align: center;
+}
+
+.widthAndHeightTableRequest th
+{
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.pagination-container,.pagination-requests-container,.pagination-products-container {
+  display: inline-block;
+  margin-top: 40px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 48.5%;
+}
+
+.pagination-container li {
+  float: left;
+  padding: 8px 16px;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination-requests-container li {
+  float: left;
+  padding: 8px 16px;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination-products-container li {
+  float: left;
+  padding: 8px 16px;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination-container li.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination-requests-container li.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination-products-container li.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+li {
+  list-style-type: none;
+}
+
+.grid_properties_pagination
+{
+	color: white;
+	display:grid;
+	grid-template-columns: 30% 70%;
+	
+}
+
+.label_total_counts
+{
+	margin-left: 520px;
+	margin-top: 30px;
+	text-align: left;
+}
+
+.label_total_counts div
+{
+	width: 250px;
+}
+
+.select_count,.select_count_requests
+{
+	width: 50px;
+}
+
+.btn_ok,.btn_filter_erase,.btn_update,.btn_close,.btn_close_erase_employee,.btn_erase_employee,.btn_erase_request,.btn_close_erase_request,.btn_close_add_employee,.btn_add_employee,.btn_add_request,.btn_close_add_request,.btn_edit_employee,.btn_close_edit_employee,.btn_edit_request,.btn_close_edit_request,.btn_edit_password,.btn_close_edit_password,.btn_close_discount,.btn_update_value_discount,.btn_close_type_profiles,.btn_add_product,.btn_close_add_product,.btn_edit_product,.btn_close_edit_product,.btn_erase_product,.btn_close_erase_product
+{
+	background: black;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 15px;
+    margin-bottom: 0;
+}
+
+.menu_gestao
+{
+	margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+	display:grid;
+	grid-template-columns: 51% 1px 49% 1px 47%;
+	width: 330px;
+	height: 50px;
+	position: relative;
+	bottom: 0px;
+	justify-content: center;
+}
+
+.menu_gestao div
+{
+	margin: auto;
+	border: 4px white solid;
+	width: 100%;
+	height: 60%;
+	padding-top: 0px;
+	margin-right: 3px;
+	margin-left: 3px;
+	text-align: center;
+}
+
+.menu_gestao a
+{
+	margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+	padding: 0px;
+}
+
+.menu_funcionario
+{
+	background-color: white;
+	color:black;
+}
+
+.menu_pedidos,.menu_produtos
+{
+	color:white;
+}
+
+.menu_gestao .menu_espaco
+{
+	border: 1px white solid;
+	margin-left: 8px;
+}
+
+.btn_excel_employee,.btn_pdf_employee
+{
+	margin-left: 20px;
+}
+
+.pagination_count_bottom {
+    width: 600px;
+}
+
+.btn_submit_cancel
+{
+	margin-top: 30px;
+}
+
+.btn_submit_cancel button
+{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.addEmployeeDiv,.addRequestDiv,.addProductsDiv
+{
+	margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+	display:grid;
+	grid-template-columns: 100px;
+	width: 60px;
+	height: 0px;
+	position:relative;
+	margin-right: 29%;
+	bottom: 90px;
+}
+
+.grid_new_employee,.grid_new_request,.grid_edit_employee,.grid_edit_request,.grid_edit_password,.grid_new_product
+{
+	display:grid;
+	width: 100%;
+    grid-template-columns: 250px 250px;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.grid_new_employee div
+{
+	margin-top: 10px;
+}
+
+.text-filtro {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+.select-filtro {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+.addRequestLink,.addProductLink img
+{
+	filter: contrast(0%) brightness(900%);
+}
+
+.grid_edit_employee div {
+    padding-top: 10px;
+}
+
+.grid_edit_request div {
+    padding-top: 10px;
+}
+.img_ranking_employee
+{
+	margin-left: 4px;
+}
+
+.grid_discount
+{
+	display: grid;
+	grid-template-columns: 200px 200px;
+	justify-content: space-between;
+}
+
+.div_text_value_discount
+{
+	margin-top: 12px;
+	margin-left: 10px;
+}
+
+.liga-desliga
+{
+	width: 45px;
+}
+
+.liga-desliga__checkbox {
+	position: absolute;
+	left: -9999px;
+	
+}
+
+.liga-desliga__botao {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	cursor: pointer;
+}
+
+.liga-desliga__botao::before,
+.liga-desliga__botao::after {
+	content: "";
+	box-shadow: 0 0 0 1px #CCC;
+	transition: all 0.2s ease;
+}
+
+.liga-desliga__botao::before {
+	display: inline-block;
+	border-radius: 1em;
+	height: 1em;
+	width: 2em;
+	margin-right: 0.5em;
+	background: #900;
+}
+
+.liga-desliga__botao::after {
+	position: absolute;
+	top: 0.025em;
+	left: 0.025em;
+	width: 0.95em;
+	height: 0.95em;
+	border-radius: 100%;
+	background: #FFF;
+}
+
+.liga-desliga__checkbox:checked + .liga-desliga__botao::before {
+	background: #55D069;
+}
+
+.liga-desliga__checkbox:checked + .liga-desliga__botao::after {
+	left: 1.025em;
+}
+
+.liga-desliga__checkbox:focus + .liga-desliga__botao::before {
+	outline: 3px dotted #CCC;
+}
+
+.btn_update_value_discount
+{
+	margin-top: 30px;
+	margin-right: 10px;
+}
+
+.img_birthday_cake
+{
+	margin-left: 28%;
+	position: absolute;
+	top: 180px;
+}
+
+.img_erase
+{
+	margin-top: 4px;
+	height: 36px;
+	width: 38px;
+
+}
+.table_type_profiles td
+{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.subtitle_select_speciality
+{
+	font-size: 14px;
+}
+
+.select_speciality_request_add,.select_speciality_request_receive
+{
+	width: 105px;
+} 
+
+.grid_select_speciality_request
+{
+	display: grid;
+	grid-template-columns: 105px 105px;
+	border: 1px solid black;
+}
+
+.div_select_escolha
+{
+	margin-left: 15px;
+}
+
+.div_select_escolhidos
+{
+	margin-left: 25px;
+}
+
+.div_select_escolha,.div_select_escolhidos
+{
+	margin-bottom: 5px;
+}
+
+.spacing_top
+{
+	margin-top: 10px;
+}
+
+.btn_specialitys_save_return div
+{
+	margin: -4px;
+}
+
+.envelope_borda_cinza
+{
+	border: solid 2px white;
+	width: 430px;
+	height: 50px;
+	position:relative;
+	bottom: 20px;
+}
+#text_new_adress_employee,#text_edit_endereco_employee
+{
+	width: 508px;
+	height: 79px;
+}

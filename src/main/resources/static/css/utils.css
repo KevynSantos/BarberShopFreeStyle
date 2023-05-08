@@ -1,0 +1,38 @@
+p,td,th,text,label,a,span,div
+{
+	font-family: Arial;
+}
+
+.typeProfileAdministrador
+{
+	font-size: 14px;
+	color: #2067a3;
+}
+
+.typeProfileBarbeiro
+{
+	font-size: 14px;
+	color: #9D9DBF;
+}
+
+.typeProfileCabelereiro
+{
+	font-size: 14px;
+	color: #54DEAB;
+}
+
+.typeProfilePedicure,.typeProfileManicure
+{
+	font-size: 14px;
+	color: #E8EB38;
+}
+
+input[type=text]
+{
+	font-size:18px;
+}
+
+textarea
+{
+	font-size:18px;
+}

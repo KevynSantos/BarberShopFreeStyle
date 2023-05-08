@@ -1,0 +1,357 @@
+<html>
+<head>
+<style>
+body {
+ background-repeat: no-repeat;
+ background-size: 100% 100%; 
+  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+}
+</style>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/schedules.css">
+<link rel="stylesheet" href="bootstrap-3.3.0/bootstrap.min.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/jquery.timepicker.min.css">
+<link rel="stylesheet" href="css/utils.css">
+<link rel="stylesheet" href="css/jquery.loadingModal.css">
+<link rel="stylesheet" href="css/toastr.css">
+<link rel="stylesheet" href="css/error.css">
+<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.timepicker.min.js"></script>
+<script type="text/javascript" src="js/jquery.maskMoney.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+<script type="text/javascript" src="js/pagination.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.0/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/schedules.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/paginationListBuilder.js"></script>
+<script type="text/javascript" src="js/jquery.loadingModal.js"></script>
+<script src="js/toastr.js"></script>
+<script type="text/javascript" src="js/error.js"></script>
+<script type="text/javascript" src="js/CalculateTime.js"></script>
+<script type="text/javascript" src="js/RequestServices.js"></script>
+<script type="text/javascript" src="js/Employee.js"></script>
+<script type="text/javascript" src="js/Validation.js"></script>
+<script type="text/javascript" src="js/ChangeData.js"></script>
+<script type="text/javascript" src="js/RememberFilter.js"></script>
+<script type="text/javascript" src="js/HappyBirthdayOfClient.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+
+    var contextPath = /*[[@{/}]]*/'';
+
+ /*]]>*/
+ </script>
+</head>
+<body>
+<p class="title_project">Barber Shop FreeStyle</p>
+<div class="div_table_login">
+<table  class="table_login">
+<tr><th>Bem vindo(a): <br> <br> <label th:text="${user.login}"></label><br> <br> 
+	<span th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><label class="typeProfileAdministrador">GESTOR</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='BARBEIRO'}"><label class="typeProfileBarbeiro">BARBEIRO</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='PEDICURE'}"><label class="typeProfilePedicure">PEDICURE</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='CABELEIREIRO'}"><label class="typeProfileCabelereiro">CABELEIREIRO</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='MANICURE'}"><label class="typeProfileManicure">MANICURE</label></span>
+</th></tr>
+<tr><td><hr></td></tr>
+<tr><td class="td_login"><a href='#' class='changeDataBtn'>Alterar Dados</a></td></tr>
+<tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a href='/management' onClick="localStorage.clear();">Gestão</a></td></tr>
+<tr><td><a href="/us/logoff" onClick="localStorage.clear();">Sair</a></td></tr>
+</table>
+</div>
+
+	<button type="button" class="btn_filter">Filtro</button>
+	<p class="subtitle_schedules">Agendamentos</p> 
+	<table class="table_pagination_schedules" align="center" cellspacing="0" >
+		<thead>
+			<tr><th>Pedido</th><th>Valor Total</th><th>CPF</th><th>Data</th><th>Hora</th><th>Ações</th></tr>
+		</thead>
+		<tbody id="registros_tabela">
+			
+		</tbody>
+	</table>
+	<div class="grid_properties_pagination" align="center">
+		<div class="pagination-container">
+  		 
+		</div>
+	
+		<div class="pagination_count_bottom"><a th:href="@{/home}"><button type="button" class="btn_schedules_return" onClick="localStorage.clear();">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf" title="Download do Relatório PDF"/></a></div> 
+		
+		<div class="label_total_counts">
+			<div><label>Resultados por página:</label>
+				<select class="select_count">
+					<option value="10">10</option>
+					<option value="30">30</option>
+					<option value="50">50</option>
+				</select>
+			</div>
+			<div><label>Total de Resultados: </label> <span id="count_results"></span></div>
+		</div>
+	</div>
+	<form id="form_filterSchedules">
+		<div id="filterSchedules" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Filtro</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    		<div class="grid_filter_services" >
+			    			<div>
+			    				Pedido<br>
+			    				<input type="text" name="text_pedido" id="text_pedido" class="text-filtro">
+			    			</div>
+			    			
+			    			<div>
+			    				CPF<br>
+			    				<input type="text" name="text_cpf" id="text_cpf" class="text-filtro">
+			    			</div>
+			    			
+			    			<div>
+			    				Data<br>
+			    				<table class="table-data-abertura">
+										<tbody><tr>
+											<td>De:<input type="text" id="data_inicial" class="text_data_abertura " name="text_data_inicial" autocomplete="off"></td>
+											<td>Até:<input type="text" id="data_final" class="text_data_abertura " name="text_data_final" autocomplete="off"></td>
+										</tr>
+									</tbody></table>
+			    			</div>
+			    			<div>
+			    				Hora<br>
+			    				<table class="table-hora-abertura">
+										<tbody><tr>
+											<td>De:<input type="time" id="hora_inicial" class="text_hora_abertura" name="text_hora_inicial" autocomplete="off"></td>
+											<td>Até:<input type="time" id="hora_final" class="text_hora_abertura" name="text_hora_final" autocomplete="off"></td>
+										</tr>
+									</tbody></table>
+			    			</div>
+			    			
+			    			<span th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}">
+				    			<div>
+				    				CPF do Funcionário<br>
+				    				<input type="text" name="text_cpf_employee" id="text_cpf_employee" class="text-filtro">
+				    			</div>
+			    			</span>
+			    			
+			    			<span th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}">
+				    			<div>
+				    				Especialidade do Funcionário<br>
+				    				<select class="select-filtro" name="select_speciality_employee" id="select_speciality_employee">
+				    					<option value="">Todos</option>
+				    					<option value="BARBEIRO">Barbeiro</option>
+				    					<option value="PEDICURE">Pedicure</option>
+				    					<option value="CABELEIREIRO">Cabeleireiro</option>
+				    					<option value="MANICURE">Manicure</option>
+				    				</select>
+				    			</div>
+			    			</span>
+			    			
+			    		</div>
+			    	
+			    	
+			    		
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" id="btn_filter_schedules" class="btn_filter_submit">Filtrar</button><button type="reset" class="btn_filter_submit">Limpar</button><button type="button" class="btn_ok">Fechar</button></div>
+			    	</div>
+			    </div>
+			    	
+			   
+			    	
+			 </div>
+		</div>
+	</form>
+	
+	<div id="editSchedules" class="modal modal-group fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div id="modal-content-continue" class="modal-content modal-continue">
+		    	<div class="modal-header">
+		    		<h3>Editar Agendamento</h3>
+		    	</div>
+		    	
+		    	<div class="modal-body">
+		    	
+		    		<div class="grid_edit_schedules">
+			    			
+			    			
+			    			
+			    			<div>
+			    				CPF<br>
+			    				<input type="text" name="text_edit_cpf" id="text_edit_cpf" class="text-filtro">
+			    			</div>
+			    			
+			    			<div>
+			    				Data<br>
+			    				<input type="date" id="edit_data" class="text-filtro" autocomplete="off">
+			    			</div>
+			    			<div>
+			    				Hora<br>
+			    				<input type="text" id="edit_hora" class="edit_text_hora_abertura text-filtro" autocomplete="off">
+			    			</div>
+		    		
+		    		</div>
+		    	
+		    	
+		    			
+		    	</div>
+		    	<div class="modal-footer">
+		    		<div class="btn_submit_cancel"><button type="button" class="btn_update">Atualizar</button><button type="button" class="btn_close">Cancelar</button></div>
+		    	</div>
+		    </div>
+		    	
+		    	
+		    	
+		 </div>
+	</div>
+	
+	<div id="requestModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Pedido(s)</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    		<div class="grid-request">
+				    		<div>
+				    			Novo Pedido:<br>
+				    			<input type = "text" class="name_source_request"> <input type="button" class="btn_source_request" value="Buscar">
+				    			<br>
+				    			<br>
+				    			<label>Resultados encontrados:</label>
+				    			<br>
+				    			<br>
+				    			<span id="result_requests"></span>
+				    		</div>
+				    		<div class="requests_add_content">
+				    			<center>
+					    			<label>Pedidos:</label>
+					    			<br>
+					    			<br>
+					    			<table border="2" class="requests_content">
+					    				<tr><th>Nome</th><th>Tempo</th><th>Preço</th><th>Ações</th></tr>
+					    				<tr class='initRequestEmpty'><td>--</td><td>--</td><td>--</td><td>--</td></tr>
+				    				</table>
+				    			</center>
+			    			</div>	
+			    		</div>
+			    		
+			    		<input type="hidden" id="idServiceToUpdateRequest" name ="idServiceToUpdateRequest">
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" class="btn_update_request">Atualizar</button><button type="button" class="btn_ok_requests_show">Fechar</button></div>
+			    	</div>
+			    </div>
+			    	
+			   
+			    	
+			 </div>
+		</div>
+	
+	<div id="descriptionModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Descrição</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    		<span id="descriptionSpan"></span>
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" class="btn_ok_description">Fechar</button></div>
+			    	</div>
+			    </div>
+			    	
+			   
+			    	
+			 </div>
+		</div>
+		
+	<form action="/scheduling/delete" method="POST">
+			<div id="eraseModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+				  <div class="modal-dialog" role="document">
+				    <div id="modal-content-continue" class="modal-content modal-continue">
+				    	<div class="modal-header">
+				    		<h3>Exclusão</h3>
+				    	</div>
+				    	
+				    	<div class="modal-body">
+				    	
+				    		<h5>Deseja excluir esse Agendamento?</h5>	
+				    		<input type="hidden" value='' id="idSchedules" name="idSchedules">
+				    			
+				    	</div>
+				    	<div class="modal-footer">
+				    		<div class="btn_submit_cancel"><button type="submit" class="btn_filter_submit">Excluir</button><button type="button" class="btn_ok_close_erase">Fechar</button></div>
+				    	</div>
+				    </div>
+				    	
+				   
+				    	
+				 </div>
+			</div>
+		</form>
+		
+	<form action="/scheduling/checkin" method="POST">
+			<div id="checkinModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+				  <div class="modal-dialog" role="document">
+				    <div id="modal-content-continue" class="modal-content modal-continue">
+				    	<div class="modal-header">
+				    		<h3>Checkin</h3>
+				    	</div>
+				    	
+				    	<div class="modal-body">
+				    	
+				    		<h5>Deseja realizar o checkin desse Agendamento?</h5>	
+				    		<input type="hidden" value='' id="idSchedulesCheckin" name="idSchedulesCheckin">
+				    			
+				    	</div>
+				    	<div class="modal-footer">
+				    		<div class="btn_submit_cancel"><button type="submit" class="btn_filter_submit">Checkin</button><button type="button" class="btn_ok_close_checkin">Fechar</button></div>
+				    	</div>
+				    </div>
+				    	
+				   
+				    	
+				 </div>
+			</div>
+		</form>
+		
+		<form action="/scheduling/final/scheduled" method="POST">
+			<div id="finalServiceModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+				  <div class="modal-dialog" role="document">
+				    <div id="modal-content-continue" class="modal-content modal-continue">
+				    	<div class="modal-header">
+				    		<h3>Finalizar Agendamento</h3>
+				    	</div>
+				    	
+				    	<div class="modal-body">
+				    	
+				    		<h5>Deseja finalizar esse Agendamento?</h5>	
+				    		<input type="hidden" value='' id="idServiceFinal" name="idServiceFinal">
+				    			
+				    	</div>
+				    	<div class="modal-footer">
+				    		<div class="btn_submit_cancel"><button type="submit" class="btn_filter_submit">Finalizar</button><button type="button" class="btn_ok_close_final_scheduled">Fechar</button></div>
+				    	</div>
+				    </div>
+				    	
+				   
+				    	
+				 </div>
+			</div>
+		</form>
+		<span th:text="${discount_of_client}" id="discount_of_client"></span>
+</body>
+</html>

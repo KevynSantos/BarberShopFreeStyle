@@ -1,0 +1,734 @@
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/AbstractController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/AbstractController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/BarberShopFreeStyleController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/BarberShopFreeStyleController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/ClientController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/ClientController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/IndexController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/IndexController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/RequestController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/RequestController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/SchedulingController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/SchedulingController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/ServiceController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/ServiceController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/UserController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/UserController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/AbstractDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/AbstractDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/ClientDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/ClientDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/RequestDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/RequestDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/RequestServiceDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/RequestServiceDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/SchedulingDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/SchedulingDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/ServiceDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/ServiceDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/UserDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/UserDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/AbstractDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/AbstractDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/ClientDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/ClientDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/RequestDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/RequestDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/RequestServiceDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/RequestServiceDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/SchedulingDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/SchedulingDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/ServiceDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/ServiceDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/UserDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/UserDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/enums/Access.class
+Binary file target/classes/br/com/BarberShopFreeStyle/enums/Access.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/enums/StatusService.class
+Binary file target/classes/br/com/BarberShopFreeStyle/enums/StatusService.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/enums/TypeProfile.class
+Binary file target/classes/br/com/BarberShopFreeStyle/enums/TypeProfile.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/Agendamento.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/Agendamento.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/Cliente.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/Cliente.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/Funcionario.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/Funcionario.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/Pedido.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/Pedido.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/PedidoServico.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/PedidoServico.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/Servico.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/Servico.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/TipoPerfil.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/TipoPerfil.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/Usuario.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/Usuario.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/AbstractService.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/AbstractService.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/ClientService.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/ClientService.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/RequestService.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/RequestService.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/RequestServiceService.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/RequestServiceService.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/SchedulingService.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/SchedulingService.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/Service.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/Service.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/UserService.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/UserService.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/impl/ClientServiceImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/impl/ClientServiceImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/impl/RequestServiceImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/impl/RequestServiceImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/impl/RequestServiceServiceImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/impl/RequestServiceServiceImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/impl/SchedulingServiceImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/impl/SchedulingServiceImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/impl/ServiceImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/impl/ServiceImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/services/impl/UserServiceImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/services/impl/UserServiceImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/utils/Conversion.class
+Binary file target/classes/br/com/BarberShopFreeStyle/utils/Conversion.class has changed
+
+diff -r 7685a18bf39f target/classes/static/js/addService.js
+--- a/target/classes/static/js/addService.js	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/static/js/addService.js	Fri May 05 01:00:36 2023 -0300
+@@ -99,7 +99,7 @@
+ 			var name = $(".name_source_request").val();
+ 			
+ 			$.ajax({
+-			     url : "/request/getByName",
++			     url : contextPath + "/request/getByName",
+ 			     type : 'GET',
+ 			     data : {
+ 			         name : name
+@@ -158,7 +158,7 @@
+ 		var response;
+ 		
+ 			$.ajax({
+-			     url : "/client/getClientByCPF",
++			     url : contextPath + "/client/getClientByCPF",
+ 			     type : 'GET',
+ 			     data : {
+ 			    	 cpf : cpf
+@@ -249,7 +249,7 @@
+ 			
+ 				
+ 				$.ajax({
+-				     url : "/service/add",
++				     url : contextPath + "/service/add",
+ 				     type : 'POST',
+ 				     data : formData,
+ 				     async: false,
+@@ -298,7 +298,7 @@
+ 	this.init = function()
+ 	{
+ 		
+-		$('body').css('background-image', 'url(/img/barbearia-fundo-index-orig.jpg)');
++		
+ 		
+ 		toastr.options = {
+ 				  "closeButton": false,
+diff -r 7685a18bf39f target/classes/static/js/clients.js
+--- a/target/classes/static/js/clients.js	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/static/js/clients.js	Fri May 05 01:00:37 2023 -0300
+@@ -81,7 +81,7 @@
+ 	var cliente = null;
+ 	
+ 	$.ajax({
+-	     url : "/client/getById",
++	     url : contextPath + "/client/getById",
+ 	     type : 'GET',
+ 	     data : {
+ 	    	 idClient : itemId
+@@ -213,7 +213,7 @@
+ 				formData.append("idClient",idClient);
+ 				
+ 				$.ajax({
+-				     url : "/client/update",
++				     url : contextPath + "/client/update",
+ 				     type : 'PUT',
+ 				     data : formData,
+ 				     async: false,
+@@ -299,7 +299,7 @@
+ 		var response;
+ 		
+ 			$.ajax({
+-			     url : "/client/getClientByCPF",
++			     url : contextPath + "/client/getClientByCPF",
+ 			     type : 'GET',
+ 			     data : {
+ 			    	 cpf : cpf
+@@ -410,7 +410,7 @@
+ 				formData.append("text_new_endereco",endereco);
+ 				
+ 				$.ajax({
+-				     url : "/client/add",
++				     url : contextPath + "/client/add",
+ 				     type : 'POST',
+ 				     data : formData,
+ 				     async: false,
+@@ -497,7 +497,7 @@
+ 		try
+ 		{
+ 			
+-			$('body').css('background-image', 'url(/img/barbearia-fundo-index-orig.jpg)');
++			
+ 			
+ 			$('body').loadingModal({
+ 		  		  position: 'auto',
+diff -r 7685a18bf39f target/classes/static/js/paginationListBuilder.js
+--- a/target/classes/static/js/paginationListBuilder.js	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/static/js/paginationListBuilder.js	Fri May 05 01:00:37 2023 -0300
+@@ -61,7 +61,7 @@
+ 		var fileName = this.nameFileExcel+formatDateUs(new Date());
+ 		var serializeForm = $(this.formSerialize).serialize();
+ 		let filterData = "pageSize="+numItem+"&"+serializeForm;
+-		let fileUrl = window.location.origin+this.contextDownloadExcel+fileName+".xls?"+filterData;
++		let fileUrl = contextPath + this.contextDownloadExcel+fileName+".xls?"+filterData;
+ 		
+ 		fetch(fileUrl).then((response) => {
+ 			
+@@ -97,7 +97,7 @@
+ 		var fileName = this.nameFileExcel+formatDateUs(new Date());
+ 		var serializeForm = $(this.formSerialize).serialize();
+ 		let filterData = "pageSize="+numItem+"&"+serializeForm;
+-		let fileUrl = window.location.origin+this.contextDownloadExcel+fileName+".pdf?"+filterData;
++		let fileUrl = contextPath + this.contextDownloadExcel+fileName+".pdf?"+filterData;
+ 		
+ 			fetch(fileUrl).then((response) => {
+ 				
+@@ -132,7 +132,7 @@
+ 		
+ 		let filterData = "pageSize="+numItem+"&"+formFilter;
+ 		
+-		var url = window.location.origin + this.url + `?${filterData}`;
++		var url = contextPath + this.url + `?${filterData}`;
+ 		
+ 		$(this.paginationContainer).pagination({
+ 			dataSource: url,
+diff -r 7685a18bf39f target/classes/static/js/schedules.js
+--- a/target/classes/static/js/schedules.js	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/static/js/schedules.js	Fri May 05 01:00:37 2023 -0300
+@@ -90,7 +90,7 @@
+ 	var service = null;
+ 	
+ 	$.ajax({
+-	     url : "/scheduling/getById",
++	     url : contextPath + "/scheduling/getById",
+ 	     type : 'GET',
+ 	     data : {
+ 	    	 idService : itemId
+@@ -387,7 +387,7 @@
+ 			var name = $(".name_source_request").val();
+ 			
+ 			$.ajax({
+-			     url : "/request/getByName",
++			     url : contextPath + "/request/getByName",
+ 			     type : 'GET',
+ 			     data : {
+ 			         name : name
+@@ -442,7 +442,7 @@
+ 		var response;
+ 		
+ 			$.ajax({
+-			     url : "/client/getClientByCPF",
++			     url : contextPath + "/client/getClientByCPF",
+ 			     type : 'GET',
+ 			     data : {
+ 			    	 cpf : cpf
+@@ -471,7 +471,7 @@
+ 		
+ 		
+ 		$.ajax({
+-		     url : "/scheduling/update",
++		     url : contextPath + "/scheduling/update",
+ 		     type : 'POST',
+ 		     data : {
+ 		    	 
+@@ -595,7 +595,7 @@
+ 					  "hideMethod": "fadeOut"
+ 			};
+ 			
+-			$('body').css('background-image', 'url(/img/barbearia-fundo-index-orig.jpg)');
++			
+ 			
+ 			$('body').loadingModal({
+ 		  		  position: 'auto',
+diff -r 7685a18bf39f target/classes/static/js/services.js
+--- a/target/classes/static/js/services.js	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/static/js/services.js	Fri May 05 01:00:38 2023 -0300
+@@ -165,7 +165,7 @@
+ 		var response;
+ 		
+ 			$.ajax({
+-			     url : "/client/getClientByCPF",
++			     url : contextPath + "/client/getClientByCPF",
+ 			     type : 'GET',
+ 			     data : {
+ 			    	 cpf : cpf
+@@ -194,7 +194,7 @@
+ 		
+ 		
+ 		$.ajax({
+-		     url : "/service/update",
++		     url : contextPath + "/service/update",
+ 		     type : 'PUT',
+ 		     data : {
+ 		    	 
+@@ -379,7 +379,7 @@
+ 			var name = $(".name_source_request").val();
+ 			
+ 			$.ajax({
+-			     url : "/request/getByName",
++			     url : contextPath + "/request/getByName",
+ 			     type : 'GET',
+ 			     data : {
+ 			         name : name
+@@ -454,7 +454,7 @@
+ 					  "hideMethod": "fadeOut"
+ 			};
+ 			
+-			$('body').css('background-image', 'url(/img/barbearia-fundo-index-orig.jpg)');
++			
+ 			
+ 			
+ 			$('body').loadingModal({
+diff -r 7685a18bf39f target/classes/templates/addScheduling.html
+--- a/target/classes/templates/addScheduling.html	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/templates/addScheduling.html	Fri May 05 01:00:38 2023 -0300
+@@ -2,5 +2,4 @@
+ <head>
+ <style>
+ body {
+- background-color: black;
+  background-repeat: no-repeat;
+@@ -6,4 +5,6 @@
+  background-repeat: no-repeat;
++ background-size: 100% 100%; 
++  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+ }
+ </style>
+ <meta charset="UTF-8">
+@@ -26,6 +27,14 @@
+ <script type="text/javascript" src="js/Validation.js"></script>
+ <script type="text/javascript" src="js/ChangeData.js"></script>
+ <script type="text/javascript" src="js/ClientModal.js"></script>
++<script type="text/javascript" src="js/utils.js"></script>
++<script type="text/javascript" th:inline="javascript">
++/*<![CDATA[*/
++
++    var contextPath = /*[[@{/}]]*/'';
++
++ /*]]>*/
++ </script>
+ </head>
+ <body>
+ <p class="title_project">Barber Shop FreeStyle</p>
+@@ -40,7 +49,7 @@
+ </th></tr>
+ <tr><td class="td_login"><a href='#' class='changeDataBtn'>Alterar Dados</a></td></tr>
+ <tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a href='/management'>Gestão</a></td></tr>
+-<tr><td><a href="/us/logoff">Sair</a></td></tr>
++<tr><td><a th:href="@{/us/logoff}">Sair</a></td></tr>
+ </table>
+ </div>
+ 
+@@ -76,7 +85,7 @@
+ 			<div><textarea rows="5" cols="72" maxlength="100" id="text_descricao"></textarea></div>
+ 		</div>
+ 		
+-	<div class="flex_btn_bottom"><a href="/home"><button type="button" class="btn_scheduling_return">Voltar</button></a> <a href="#"><button type="button" class="btn_scheduling_add">Cadastrar</button></a></div>
++	<div class="flex_btn_bottom"><a th:href="@{/home}"><button type="button" class="btn_scheduling_return">Voltar</button></a> <a href="#"><button type="button" class="btn_scheduling_add">Cadastrar</button></a></div>
+ 	</form>
+ </div>
+ <div id="addRequest" class="modal modal-group fade" tabindex="-1" role="dialog">
+diff -r 7685a18bf39f target/classes/templates/addService.html
+--- a/target/classes/templates/addService.html	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/templates/addService.html	Fri May 05 01:00:38 2023 -0300
+@@ -2,5 +2,4 @@
+ <head>
+ <style>
+ body {
+- background-color:black;
+  background-repeat: no-repeat;
+@@ -6,4 +5,6 @@
+  background-repeat: no-repeat;
++ background-size: 100% 100%; 
++  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+ }
+ </style>
+ <meta charset="UTF-8">
+@@ -25,6 +26,14 @@
+ <script type="text/javascript" src="js/Validation.js"></script>
+ <script type="text/javascript" src="js/ChangeData.js"></script>
+ <script type="text/javascript" src="js/ClientModal.js"></script>
++<script type="text/javascript" src="js/utils.js"></script>
++<script type="text/javascript" th:inline="javascript">
++/*<![CDATA[*/
++
++    var contextPath = /*[[@{/}]]*/'';
++
++ /*]]>*/
++ </script>
+ </head>
+ <body>
+ <p class="title_project">Barber Shop FreeStyle</p>
+@@ -40,7 +49,7 @@
+ <tr><td><hr></td></tr>
+ <tr><td class="td_login"><a href='#' class='changeDataBtn'>Alterar Dados</a></td></tr>
+ <tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a href='/management'>Gestão</a></td></tr>
+-<tr><td><a href="/us/logoff">Sair</a></td></tr>
++<tr><td><a th:href="@{/us/logoff}">Sair</a></td></tr>
+ </table>
+ </div>
+ 
+@@ -61,7 +70,7 @@
+ 			<div>Descrição do Serviço:</div>
+ 			<div><textarea rows="5" cols="72" maxlength="100" id="text_descricao"></textarea></div>
+ 		</div>
+-		<div class="flex_btn_bottom"><a href="/home"><button type="button" class="btn_service_return">Voltar</button></a><button type="button" class="btn_service_add" >Cadastrar</button></div>
++		<div class="flex_btn_bottom"><a th:href="@{/home}"><button type="button" class="btn_service_return">Voltar</button></a><button type="button" class="btn_service_add" >Cadastrar</button></div>
+ 	</form>
+ </div>
+ 
+diff -r 7685a18bf39f target/classes/templates/clients.html
+--- a/target/classes/templates/clients.html	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/templates/clients.html	Fri May 05 01:00:39 2023 -0300
+@@ -2,6 +2,5 @@
+ <head>
+ <style>
+ body {
+- background-color: black;
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
+@@ -6,5 +5,6 @@
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
++  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+ }
+ </style>
+ <meta charset="UTF-8">
+@@ -28,6 +28,14 @@
+ <script type="text/javascript" src="js/Validation.js"></script>
+ <script type="text/javascript" src="js/ChangeData.js"></script>
+ <script type="text/javascript" src="js/RememberFilter.js"></script>
++<script type="text/javascript" src="js/utils.js"></script>
++<script type="text/javascript" th:inline="javascript">
++/*<![CDATA[*/
++
++    var contextPath = /*[[@{/}]]*/'';
++
++ /*]]>*/
++ </script>
+ </head>
+ <body>
+ <p class="title_project">Barber Shop FreeStyle</p>
+@@ -42,11 +50,11 @@
+ </th></tr>
+ <tr><td><hr></td></tr>
+ <tr><td class="td_login"><a href='#' class='changeDataBtn'>Alterar Dados</a></td></tr>
+-<tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a href='/management' onClick="localStorage.clear();">Gestão</a></td></tr>
+-<tr><td><a href="/us/logoff" onClick="localStorage.clear();">Sair</a></td></tr>
++<tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a th:href="@{/management}" onClick="localStorage.clear();">Gestão</a></td></tr>
++<tr><td><a th:href="@{/us/logoff}" onClick="localStorage.clear();">Sair</a></td></tr>
+ </table>
+ </div>
+ 	
+ 		<div class="grid-header-filter">
+ 			<div>
+ 				<span class="subtitle_clients">Clientes</span>
+@@ -47,10 +55,10 @@
+ </table>
+ </div>
+ 	
+ 		<div class="grid-header-filter">
+ 			<div>
+ 				<span class="subtitle_clients">Clientes</span>
+-				<div class='div_add_user'><a href="#"><img src="/img/addUser.png" class="addUser" width="70" height="70"></a>
++				<div class='div_add_user'><a href="#"><img th:src="@{/img/addUser.png}" class="addUser" width="70" height="70"></a>
+ 				<button type="button" class="btn_filter">Filtro</button></div>
+ 			</div>
+ 		</div>
+@@ -69,7 +77,7 @@
+   		 
+ 		</div>
+ 	
+-		<div class="pagination_count_bottom"><a href="/home"><button type="button" class="btn_clients_return" onClick="localStorage.clear();">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf" title="Download do Relatório PDF"/></a></div> 
++		<div class="pagination_count_bottom"><a th:href="@{/home}"><button type="button" class="btn_clients_return" onClick="localStorage.clear();">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf" title="Download do Relatório PDF"/></a></div> 
+ 		
+ 		<div class="label_total_counts">
+ 			<div><label>Resultados por página:</label>
+diff -r 7685a18bf39f target/classes/templates/home.html
+--- a/target/classes/templates/home.html	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/templates/home.html	Fri May 05 01:00:39 2023 -0300
+@@ -2,6 +2,5 @@
+ <head>
+ <style>
+ body {
+- background-color: black;
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
+@@ -6,5 +5,6 @@
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
++  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+ }
+ </style>
+ <meta charset="UTF-8">
+@@ -8,12 +8,14 @@
+ }
+ </style>
+ <meta charset="UTF-8">
+-<link rel="stylesheet" href="bootstrap-3.3.0/bootstrap.min.css">
+-<link rel="stylesheet" href="css/toastr.css">
+-<link rel="stylesheet" href="css/home.css">
+-<link rel="stylesheet" href="css/utils.css">
+-<link rel="stylesheet" href="css/jquery-ui.css">
+-<link rel="stylesheet" href="css/toastr.css">
+-<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+-<script type="text/javascript" src="js/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
++<link rel="stylesheet" th:href="@{/bootstrap-3.3.0/bootstrap.min.css}">
++<link rel="stylesheet" th:href="@{/css/toastr.css}">
++<link rel="stylesheet" th:href="@{/css/home.css}">
++<link rel="stylesheet" th:href="@{/css/utils.css}">
++<link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
++<link rel="stylesheet" th:href="@{/css/toastr.css}">
++<script type="text/javascript" th:src="@{/js/jquery-3.5.1.min.js}"></script>
++<script type="text/javascript" th:src="@{/js/jQuery-Mask-Plugin-master/src/jquery.mask.js}"></script>
++<script src="js/toastr.js"></script>
++<script type="text/javascript" th:src="@{/js/home.js}"></script>
+ <script src="js/toastr.js"></script>
+@@ -19,10 +21,16 @@
+ <script src="js/toastr.js"></script>
+-<script type="text/javascript" src="js/home.js"></script>
+-<script src="js/toastr.js"></script>
+-<script type="text/javascript" src="bootstrap-3.3.0/bootstrap.min.js"></script>
+-<script type="text/javascript" src="js/jquery.maskMoney.js"></script>
+-<script type="text/javascript" src="js/Validation.js"></script>
+-<script type="text/javascript" src="js/ChangeData.js"></script>
++<script type="text/javascript" th:src="@{/bootstrap-3.3.0/bootstrap.min.js}"></script>
++<script type="text/javascript" th:src="@{/js/jquery.maskMoney.js}"></script>
++<script type="text/javascript" th:src="@{/js/Validation.js}"></script>
++<script type="text/javascript" th:src="@{/js/ChangeData.js}"></script>
++<script type="text/javascript" th:src="@{/js/utils.js}"></script>
++<script type="text/javascript" th:inline="javascript">
++/*<![CDATA[*/
++
++    var contextPath = /*[[@{/}]]*/'';
++
++ /*]]>*/
++ </script>
+ </head>
+ <body>
+ <p class="title_project">Barber Shop FreeStyle</p>
+@@ -37,8 +45,8 @@
+ </th></tr>
+ <tr><td><hr></td></tr>
+ <tr><td class="td_login"><a href='#' class='changeDataBtn'>Alterar Dados</a></td></tr>
+-<tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a href='/management'>Gestão</a></td></tr>
+-<tr><td><a href="/us/logoff">Sair</a></td></tr>
++<tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a th:href="@{/management}">Gestão</a></td></tr>
++<tr><td><a th:href="@{/us/logoff}">Sair</a></td></tr>
+ </table>
+ </div>
+ <h4 class="subtitle_home">Escolha uma Opção:</h4>
+@@ -47,9 +55,9 @@
+ <div class="grid_menu">
+ 
+ <div>
+-<a href="/addService" class="servicesNow">
+-<img src="/img/iconAdd.png" width="100%" height="100%">
++<a th:href="@{/addService}" class="servicesNow">
++<img src="img/iconAdd.png" width="100%" height="100%">
+ <p>Adicionar Serviço</p></a>
+ </div>
+ 
+ <div>
+@@ -52,10 +60,10 @@
+ <p>Adicionar Serviço</p></a>
+ </div>
+ 
+ <div>
+-<a href="/addScheduling" class="marcaHora">
+-<img src="/img/agendamentoIcon.png" width="50%" height="100%">
++<a th:href="@{/addScheduling}" class="marcaHora">
++<img src="img/agendamentoIcon.png" width="50%" height="100%">
+ <p>Agendar Serviço</p></a>
+ </div>
+ 
+ <div>
+@@ -58,10 +66,10 @@
+ <p>Agendar Serviço</p></a>
+ </div>
+ 
+ <div>
+-<a href="/services" class="servicesNow">
+-<img src="/img/cadernoIcon.png" width="50%" height="100%">
++<a th:href="@{/services}" class="servicesNow">
++<img src="img/cadernoIcon.png" width="50%" height="100%">
+ <p>Serviços</p></a>
+ </div>
+ 
+ <div>
+@@ -64,10 +72,10 @@
+ <p>Serviços</p></a>
+ </div>
+ 
+ <div>
+-<a href="/schedules" class="marcaHora">
+-<img src="/img/agendamentosListIcon.png" width="50%" height="100%">
++<a th:href="@{/schedules}" class="marcaHora">
++<img src="img/agendamentosListIcon.png" width="50%" height="100%">
+ <p>Agendamentos</p></a>
+ </div>
+ 
+ <div>
+@@ -70,9 +78,9 @@
+ <p>Agendamentos</p></a>
+ </div>
+ 
+ <div>
+-<a href="/clients">
+-<img src="/img/iconClient.png" width="50%" height="100%">
++<a th:href="@{/clients}">
++<img src="img/iconClient.png" width="50%" height="100%">
+ <p>Clientes</p></a>
+ </div>
+ 
+diff -r 7685a18bf39f target/classes/templates/index.html
+--- a/target/classes/templates/index.html	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/templates/index.html	Fri May 05 01:00:39 2023 -0300
+@@ -2,6 +2,5 @@
+ <head>
+ <style>
+ body {
+- background-image: url("/img/barbearia-fundo-index-orig.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
+@@ -6,5 +5,6 @@
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
++  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+ }
+ </style>
+ <meta charset="UTF-8">
+@@ -8,9 +8,17 @@
+ }
+ </style>
+ <meta charset="UTF-8">
+-<link rel="stylesheet" href="bootstrap-3.3.0/bootstrap.min.css">
+-<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+-<script type="text/javascript" src="bootstrap-3.3.0/bootstrap.min.js"></script>
++<link rel="stylesheet" th:href="@{/bootstrap-3.3.0/bootstrap.min.css}">
++<script type="text/javascript" th:src="@{/js/jquery-3.5.1.min.js}"></script>
++<script type="text/javascript" th:src="@{/bootstrap-3.3.0/bootstrap.min.js}"></script>
++<script type="text/javascript" th:src="@{/js/utils.js}"></script>
++<script type="text/javascript" th:inline="javascript">
++/*<![CDATA[*/
++
++    var contextPath = /*[[@{/}]]*/'';
++
++ /*]]>*/
++ </script>
+ <link rel="stylesheet" href="css/index.css">
+ <link rel="stylesheet" href="css/utils.css">
+ </head>
+diff -r 7685a18bf39f target/classes/templates/schedules.html
+--- a/target/classes/templates/schedules.html	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/templates/schedules.html	Fri May 05 01:00:39 2023 -0300
+@@ -2,6 +2,5 @@
+ <head>
+ <style>
+ body {
+- background-color: black;
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
+@@ -6,5 +5,6 @@
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
++  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+ }
+ </style>
+ <meta charset="UTF-8">
+@@ -36,6 +36,14 @@
+ <script type="text/javascript" src="js/ChangeData.js"></script>
+ <script type="text/javascript" src="js/RememberFilter.js"></script>
+ <script type="text/javascript" src="js/HappyBirthdayOfClient.js"></script>
++<script type="text/javascript" src="js/utils.js"></script>
++<script type="text/javascript" th:inline="javascript">
++/*<![CDATA[*/
++
++    var contextPath = /*[[@{/}]]*/'';
++
++ /*]]>*/
++ </script>
+ </head>
+ <body>
+ <p class="title_project">Barber Shop FreeStyle</p>
+@@ -70,7 +78,7 @@
+   		 
+ 		</div>
+ 	
+-		<div class="pagination_count_bottom"><a href="/home"><button type="button" class="btn_schedules_return" onClick="localStorage.clear();">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf" title="Download do Relatório PDF"/></a></div> 
++		<div class="pagination_count_bottom"><a th:href="@{/home}"><button type="button" class="btn_schedules_return" onClick="localStorage.clear();">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf" title="Download do Relatório PDF"/></a></div> 
+ 		
+ 		<div class="label_total_counts">
+ 			<div><label>Resultados por página:</label>
+diff -r 7685a18bf39f target/classes/templates/services.html
+--- a/target/classes/templates/services.html	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/templates/services.html	Fri May 05 01:00:40 2023 -0300
+@@ -2,6 +2,5 @@
+ <head>
+ <style>
+ body {
+- background-color: black;
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
+@@ -6,5 +5,6 @@
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
++  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+ }
+ </style>
+ <meta charset="UTF-8">
+@@ -33,6 +33,14 @@
+ <script type="text/javascript" src="js/ChangeData.js"></script>
+ <script type="text/javascript" src="js/RememberFilter.js"></script>
+ <script type="text/javascript" src="js/HappyBirthdayOfClient.js"></script>
++<script type="text/javascript" src="js/utils.js"></script>
++<script type="text/javascript" th:inline="javascript">
++/*<![CDATA[*/
++
++    var contextPath = /*[[@{/}]]*/'';
++
++ /*]]>*/
++ </script>
+ </head>
+ <body>
+ <p class="title_project">Barber Shop FreeStyle</p>
+@@ -47,8 +55,8 @@
+ </th></tr>
+ <tr><td><hr></td></tr>
+ <tr><td class="td_login"><a href='#' class='changeDataBtn'>Alterar Dados</a></td></tr>
+-<tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a href='/management' onClick="localStorage.clear();">Gestão</a></td></tr>
+-<tr><td><a href="/us/logoff" onClick="localStorage.clear();">Sair</a></td></tr>
++<tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a th:href="@{/management}" onClick="localStorage.clear();">Gestão</a></td></tr>
++<tr><td><a th:href="@{/us/logoff}" onClick="localStorage.clear();">Sair</a></td></tr>
+ </table>
+ </div>
+ 
+@@ -67,7 +75,7 @@
+   		 
+ 		</div>
+ 	
+-		<div class="pagination_count_bottom"><a href="/home"><button type="button" class="btn_services_return" onClick="localStorage.clear();">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf" title="Download do Relatório PDF"/></a></div> 
++		<div class="pagination_count_bottom"><a th:href="@{/home}"><button type="button" class="btn_services_return" onClick="localStorage.clear();">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf" title="Download do Relatório PDF"/></a></div> 
+ 		
+ 		<div class="label_total_counts">
+ 			<div><label>Resultados por página:</label>
+diff -r 7685a18bf39f target/test-classes/br/com/BarberShopFreeStyle/BarberShopFreeStyleApplicationTests.class
+Binary file target/test-classes/br/com/BarberShopFreeStyle/BarberShopFreeStyleApplicationTests.class has changed

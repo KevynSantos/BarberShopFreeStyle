@@ -1,0 +1,360 @@
+.title_project
+{
+	margin-top: 50px;
+	color: white;
+	font-size: 73px;
+	text-align: center;
+	font-family: Fantasy , Copperplate;
+}
+.table_login
+{
+	color: white;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+}
+
+.div_table_login
+{
+	transform: translate(-50%, -80%);
+    position: absolute;
+    left: 90%;
+    border: 2px white solid;
+    width: 200px;
+    height: 200px;
+}
+
+.td_login
+{
+	border-bottom: 1px solid white;
+}
+
+a {
+  color: white;
+  text-decoration: none; /* no underline */
+}
+
+.div_form_clients
+{
+	border: 5px white solid;
+	transform: translate(-50%, -50%);
+	position: absolute;
+    left: 50%;
+    width: 660px;
+    height: 520px;
+    border-radius: 8px;
+    margin-top: 220px;
+}
+
+p {
+	color: white;
+	font-size: 20px;
+	
+	
+}
+
+.subtitle_clients
+{
+	color: white;
+	font-size: 30px;
+	
+}
+
+.btn_service_return
+{
+	color: black;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #3E3E3E;
+    border-radius: 3px;
+    background-color: white;
+    font-weight: 500;
+}
+
+.btn_service_add
+{
+	color: black;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #3E3E3E;
+    border-radius: 3px;
+    background-color: white;
+    font-weight: 500;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.table_pagination_clients
+{
+	
+	color: white;
+}
+
+.addUser,.btn_filter
+{
+	position: relative;
+	bottom: 50px;
+}
+
+.table_pagination_clients th
+{
+	font-size: 18px;
+	border-bottom: 3px solid white;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	text-align: center;
+}
+
+.table_pagination_clients td
+{
+	font-size: 18px;
+	border-bottom: 1px solid white;
+	padding-left: 25px;
+	padding-right: 15px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	text-align: center;
+}
+
+.pagination-container {
+  display: inline-block;
+  margin-top: 40px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 48.5%;
+}
+
+.pagination-container li {
+  float: left;
+  padding: 8px 16px;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination-container li.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+li {
+  list-style-type: none;
+}
+
+.btn_clients_return
+{
+	color: black;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #3E3E3E;
+    border-radius: 3px;
+    background-color: white;
+    font-weight: 500;
+    margin-left: 300px;
+    margin-top: 25px;
+}
+
+.btn_filter
+{
+	color: black;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #3E3E3E;
+    border-radius: 3px;
+    background-color: white;
+    font-weight: 500;
+}
+
+
+.grid_properties_pagination
+{
+	color: white;
+	display:grid;
+	grid-template-columns: 30% 70%;
+	
+}
+
+.label_total_counts
+{
+	margin-left: 520px;
+	margin-top: 30px;
+	text-align: left;
+}
+
+.label_total_counts div
+{
+	width: 250px;
+}
+
+.select_count
+{
+	width: 50px;
+}
+
+.btn_submit_cancel
+{
+	margin-top: 30px;
+}
+
+.btn_ok,.btn_filter_erase,.btn_update,.btn_close
+{
+	background: black;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 15px;
+    margin-bottom: 0;
+}
+
+#link_maps
+{
+	color: blue;
+}
+
+.grid_filter_clients,.grid_edit_clients
+{
+	display: grid;
+    width: 100%;
+    grid-template-columns: 250px 250px;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.grid_filter_clients div {
+    padding-top: 15px;
+}
+
+.select-filtro {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+.text-filtro {
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+.btn_ok, .btn_filter_submit,.btn_submit_client,.btn_cancel_new_client,.btn_ok_close_erase,.btn_ok_erase
+{
+	background: black;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 15px;
+    margin-bottom: 0;
+}
+
+.table-data-abertura {
+    width: 100%;
+    height: 45px;
+    border: 1px solid black;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-collapse: separate;
+}
+
+.table-data-abertura input
+{
+	width: 85px;
+}
+
+.btn_submit_cancel button
+{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.grid-header-filter
+{
+	display: grid;
+	grid-template-columns: 100%;
+	justify-content: center;
+	text-align:center;
+	
+}
+
+.div_add_user
+{
+	margin-left: 40%;
+}
+
+
+
+
+
+
+
+.grid_new_client
+{
+	display:grid;
+	width: 100%;
+    grid-template-columns: 250px 250px;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.grid_new_client div
+{
+	padding-top: 15px;
+}
+
+.img_erase
+{
+	margin-top: 4px;
+    height: 36px;
+    width: 38px;
+}
+
+.img_local
+{
+	margin-right: 7px;
+}
+
+.mesagem_excluir_cliente
+{
+	color: black;
+	font-size: 14px;
+}
+
+.img_edit
+{
+	margin-right: 7px;
+}
+
+.grid_clients_description
+{
+	display: grid;
+	grid-template-columns: 30%;
+	margin-top: 20px;
+	margin-left: 5%;
+}
+
+.grid_edit_clients div {
+    padding-top: 10px;
+}
+
+.btn_excel,.btn_pdf
+{
+	margin-left: 20px;
+}
+
+.pagination_count_bottom {
+    width: 600px;
+}
+
+#text_new_endereco,#text_edit_endereco
+{
+	width: 510px;
+}

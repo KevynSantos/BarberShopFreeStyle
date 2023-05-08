@@ -1,0 +1,789 @@
+<html>
+<head>
+<style>
+body {
+ background-repeat: no-repeat;
+ background-size: 100% 100%; 
+  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+}
+</style>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="bootstrap-3.3.0/bootstrap.min.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/toastr.css">
+<link rel="stylesheet" href="css/utils.css">
+<link rel="stylesheet" href="css/management.css">
+<link rel="stylesheet" href="css/error.css">
+<link rel="stylesheet" href="css/jquery.loadingModal.css">
+<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/toastr.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.0/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/pagination.min.js"></script>
+<script type="text/javascript" src="js/paginationListBuilder.js"></script>
+<script type="text/javascript" src="js/jquery.maskMoney.js"></script>
+<script type="text/javascript" src="js/error.js"></script>
+<script type="text/javascript" src="js/jquery.loadingModal.js"></script>
+<script type="text/javascript" src="js/management.js"></script>
+<script type="text/javascript" src="js/Validation.js"></script>
+<script type="text/javascript" src="js/ChangeData.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+
+    var contextPath = /*[[@{/}]]*/'';
+
+ /*]]>*/
+ </script>
+</head>
+<body>
+<p class="title_project">Barber Shop FreeStyle</p>
+<a href="#" class="link_img_birthday_cake"><img src="img/birthday-cake.png" class="img_birthday_cake" width="60" height="60"/></a>
+<div class="div_table_login">
+<table  class="table_login">
+<tr><th>Bem vindo(a): <br> <br> <label th:text="${user.login}"></label><br> <br> 
+	<span th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><label class="typeProfileAdministrador">GESTOR</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='BARBEIRO'}"><label class="typeProfileBarbeiro">BARBEIRO</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='PEDICURE'}"><label class="typeProfilePedicure">PEDICURE</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='CABELEIREIRO'}"><label class="typeProfileCabelereiro">CABELEIREIRO</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='MANICURE'}"><label class="typeProfileManicure">MANICURE</label></span>
+</th></tr>
+<tr><td><hr></td></tr>
+<tr><td class="td_login"><a href='#' class='changeDataBtn'>Alterar Dados</a></td></tr>
+<tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a th:href="@{/management}">Gestão</a></td></tr>
+<tr><td><a th:href="@{/us/logoff}">Sair</a></td></tr>
+</table>
+</div>
+	<center>
+		 <div class="envelope_borda_cinza">
+			<div class="menu_gestao">
+				<a href="#"><div class="menu_funcionario">Funcionários</div></a>
+				<div class="menu_espaco"></div>
+				<a href="#"><div class="menu_pedidos">Pedidos</div></a>
+				<div class="menu_espaco"></div>
+				<a href="#"><div class="menu_produtos">Produtos</div></a>
+			</div>
+		</div>
+	</center>
+	<div class="addEmployeeDiv">
+		<a href='#' class="addEmployeeLink" ><img src='img/addUser.png' height="70" width="70" /></a>
+	</div>
+	<div class="addRequestDiv">
+		<a href='#' class="addRequestLink" ><img src='img/addRequest.png' height="70" width="80" /></a>
+	</div>
+	<div class="addProductsDiv">
+		<a href='#' class="addProductLink" ><img src='img/addRequest.png' height="70" width="80" /></a>
+	</div>
+	
+		
+	
+	
+<div class="pageEmployee">
+		<table class="table_pagination_managements" align="center" cellspacing="0" >
+				<thead>
+					<tr><th>Nome</th><th>Tipo</th><th>CPF</th><th>Dt. Nascimento</th><th>E-mail</th><th>Telefone</th><th>Endereço</th><th>Ações</th></tr>
+				</thead>
+				<tbody id="registros_tabela">
+					
+				</tbody>
+		</table>
+		<div class="grid_properties_pagination" align="center">
+				<div class="pagination-container">
+		  		 
+				</div>
+			
+				<div class="pagination_count_bottom"><a th:href="@{/home}"><button type="button" class="btn_clients_return">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel_employee" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf_employee" title="Download do Relatório PDF"/></a></div> 
+				
+				<div class="label_total_counts">
+					<div><label>Resultados por página:</label>
+						<select class="select_count">
+							<option value="10">10</option>
+							<option value="30">30</option>
+							<option value="50">50</option>
+						</select>
+					</div>
+					<div><label>Total de Resultados: </label> <span id="count_results"></span></div>
+				</div>
+		</div>
+</div>
+<div class="pageRequest">
+	<table class="table_pagination_managements widthAndHeightTableRequest" align="center" cellspacing="0" >
+				<thead>
+					<tr><th>Nome</th><th>Tempo</th><th>Preço</th><th>Quant. TipoPerfis</th><th>Ações</th></tr>
+				</thead>
+				<tbody id="registros_tabela_requests">
+					
+				</tbody>
+		</table>
+		<div class="grid_properties_pagination" align="center">
+				<div class="pagination-requests-container">
+		  		 
+				</div>
+			
+				<div class="pagination_count_bottom"><a th:href="@{/home}"><button type="button" class="btn_clients_return">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel_requests" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf_requests" title="Download do Relatório PDF"/></a></div> 
+				
+				<div class="label_total_counts">
+					<div><label>Resultados por página:</label>
+						<select class="select_count_requests">
+							<option value="10">10</option>
+							<option value="30">30</option>
+							<option value="50">50</option>
+						</select>
+					</div>
+					<div><label>Total de Resultados: </label> <span id="count_results_requests"></span></div>
+				</div>
+		</div>
+</div>
+
+<div class="pageProducts">
+	<table class="table_pagination_managements widthAndHeightTableRequest" align="center" cellspacing="0" >
+				<thead>
+					<tr><th>Nome</th><th>Preço</th><th>Ações</th></tr>
+				</thead>
+				<tbody id="registros_tabela_products">
+					
+				</tbody>
+		</table>
+		<div class="grid_properties_pagination" align="center">
+				<div class="pagination-products-container">
+		  		 
+				</div>
+			
+				<div class="pagination_count_bottom"><a th:href="@{/home}"><button type="button" class="btn_clients_return">Voltar</button></a><a href='#'><img src="img/icon-excel.jpg" height="60" width="60" class="btn_excel_products" title="Download do Relatório Excel"/></a><a href='#'><img src="img/icon-pdf.png" height="50" width="50" class="btn_pdf_products" title="Download do Relatório PDF"/></a></div> 
+				
+				<div class="label_total_counts">
+					<div><label>Resultados por página:</label>
+						<select class="select_count_products">
+							<option value="10">10</option>
+							<option value="30">30</option>
+							<option value="50">50</option>
+						</select>
+					</div>
+					<div><label>Total de Resultados: </label> <span id="count_results_products"></span></div>
+				</div>
+		</div>
+</div>
+<form id="form_filterManagement">
+		<div id="filterManagement" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Filtro</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    		<div class="grid_filter_management" >
+				    			<div>
+				    				Nome<br>
+				    				<input type="text" class="text-filtro" name="text_new_name" id="text_new_name">
+				    			</div>
+				    			
+				    			<div>
+				    				Sobrenome<br>
+				    				<input type="text" class="text-filtro" name="text_new_sobrenome" id="text_new_sobrenome">
+				    			</div>
+				    			
+				    			<div>
+				    				CPF<br>
+				    				<input type="text" class="text-filtro" id="text_new_cpf" name="text_new_cpf">
+				    			</div>
+				    			
+				    			<div>
+				    				Data de Nascimento<br>
+				    				<input type="date" class="text-filtro" id="text_new_data_nascimento" name="text_new_data_nascimento">
+				    			</div>
+				    			
+				    			<div>
+				    				E-mail<br> 
+				    				<input type="text" class="text-filtro" id="text_new_email" name="text_new_email">
+				    			</div>
+				    			
+				    			<div>
+				    				Telefone<br>
+				    				<input type="text" class="text-filtro telefone" id="text_new_telefone" name="text_new_telefone">
+				    			</div>
+				    		</div>
+				    		
+				    		<div class="grid_filter_management">
+					    		<div>
+					    				Endereço<br>
+					    				<textarea rows="5" cols="68" name="text_new_endereco" id="text_new_endereco"></textarea>
+					    		</div>
+					    	</div>
+			    		</div>
+			    	
+			    	
+			    		
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" id="btn_filter_services" class="btn_filter_submit">Filtrar</button><button type="reset" class="btn_filter_submit">Limpar</button><button type="button" class="btn_ok">Fechar</button></div>
+			    	</div>
+			    </div>
+			    	
+			   
+			    	
+			 </div>
+</form>
+
+<form id="form_filterManagementRequests">
+		<div id="filterManagementRequests" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Filtro</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    		<div class="grid_filter_managementRequests" >
+				    			<div>
+				    				Nome<br>
+				    				<input type="text" class="text-filtro" name="text_new_nome_request" id="text_new_name_request">
+				    			</div>
+				    			
+				    			<div>
+				    				Tempo<br>
+				    				<input type="text" class="text-filtro" name="text_new_tempo_request" id="text_new_tempo_request">
+				    			</div>
+				    			
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" id="btn_filter_services" class="btn_filter_submit">Filtrar</button><button type="reset" class="btn_filter_submit">Limpar</button><button type="button" class="btn_ok">Fechar</button></div>
+			    	</div>
+			    </div>
+			    	
+			   
+			    	
+			 </div>
+		</div>
+	</div>
+</form>
+
+<form id="form_filterManagementProducts">
+		<div id="filterManagementProducts" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Filtro</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    		<div class="grid_filter_managementProducts" >
+				    			<div>
+				    				Nome<br>
+				    				<input type="text" class="text-filtro" name="text_new_nome_product" id="text_new_name_product">
+				    			</div>
+				    			
+				    			<div>
+				    				Preço<br>
+				    				<input type="text" class="text-filtro" name="text_new_preco_product" id="text_new_preco_product">
+				    			</div>
+				    			
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" id="btn_filter_services" class="btn_filter_submit">Filtrar</button><button type="reset" class="btn_filter_submit">Limpar</button><button type="button" class="btn_ok">Fechar</button></div>
+			    	</div>
+			    </div>
+			    	
+			   
+			    	
+			 </div>
+		</div>
+	</div>
+</form>
+<div id="addressInfoModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div id="modal-content-continue" class="modal-content modal-continue">
+		    	<div class="modal-header">
+		    		<h3>Endereço</h3>
+		    	</div>
+		    	
+		    	<div class="modal-body">
+		    	
+		    	<label id='lbl_info_adress'></label>
+		    	
+		    	
+		    			
+		    	</div>
+		    	<div class="modal-footer">
+		    		<div class="btn_submit_cancel"><button type="button" class="btn_ok">OK</button></div>
+		    	</div>
+		    </div>
+		    	
+		    	
+		    	
+		 </div>
+</div>
+<form action="/us/delete" method="POST">
+	<div id="eraseEmployee" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Excluir Funcionário(a)</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    	<h5>Deseja excluir esse funcionário(a)?</h5>
+			    	<input type="hidden" value='' id="idEmployeeErase" name="idEmployeeErase">
+			    	
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="submit" class="btn_erase_employee">OK</button><button type="button" class="btn_close_erase_employee">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+	</div>
+</form>
+
+<form action="/request/delete" method="POST">
+	<div id="eraseRequest" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Excluir Pedido</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    	<h5>Deseja excluir esse Pedido?</h5>
+			    	<input type="hidden" value='' id="idRequestErase" name="idRequestErase">
+			    	
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="submit" class="btn_erase_request">OK</button><button type="button" class="btn_close_erase_request">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+	</div>
+</form>
+
+<form action="/product/delete" method="POST">
+	<div id="eraseProduct" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Excluir Produto</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    	<h5>Deseja excluir esse Produto?</h5>
+			    	<input type="hidden" value='' id="idProductErase" name="idProductErase">
+			    	
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="submit" class="btn_erase_product">OK</button><button type="button" class="btn_close_erase_product">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+	</div>
+</form>
+
+<div id="addEmployee" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Adicionar Funcionário</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    	
+			    		<div class="grid_new_employee">
+			    			<div>
+			    				Nome<br>
+			    				<input type="text" class="text-filtro" name="text_new_name_employee" id="text_new_name_employee">
+			    			</div>
+			    			<div>
+			    				Login<br>
+			    				<input type="text" class="text-filtro" name="text_new_login_employee" id="text_new_login_employee">
+			    			</div>
+			    			
+			    			<div>
+			    				Senha<br>
+			    				<input type="password" class="text-filtro" name="text_new_senha_employee" id="text_new_senha_employee">
+			    			</div>
+			    			
+			    			<div>
+			    				Tipo<br>
+			    				<select  class="select-filtro" name="select_type_employee" id="select_type_employee" required>
+			    					<option value='' disabled selected>Selecione</option>
+			    					<option value='BARBEIRO'>BARBEIRO</option>
+			    					<option value='PEDICURE'>PEDICURE</option>
+			    					<option value='CABELEIREIRO'>CABELEIREIRO</option>
+			    					<option value='MANICURE'>MANICURE</option>
+			    				</select>
+			    			</div>
+			    			
+			    			<div>
+			    				CPF<br>
+			    				<input type="text" class="text-filtro" name="text_new_cpf_employee" id="text_new_cpf_employee">
+			    			</div>
+			    			
+			    			<div>
+			    				Dt.Nascimento<br>
+			    				<input type="date" class="text-filtro" name="text_new_data_nascimento_employee" id="text_new_data_nascimento_employee">
+			    			</div>
+			    			
+			    			<div>
+			    				E-mail<br>
+			    				<input type="text" class="text-filtro" name="text_new_email_employee" id="text_new_email_employee">
+			    			</div>
+			    			
+			    			<div>
+			    				Telefone<br>
+			    				<input type="text" class="text-filtro telefone" name="text_new_telefone_employee" id="text_new_telefone_employee">
+			    			</div>
+			    			<div>
+			    				Endereço<br>
+			    				<textarea rows="5" cols="72" maxlength="100" name="text_new_adress_employee" id="text_new_adress_employee"></textarea>
+			    			</div>
+			    		</div>
+			    		
+			    	
+			    			
+			    	</div>
+			    	<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="submit" class="btn_add_employee">Adicionar</button><button type="button" class="btn_close_add_employee">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+</div>
+
+<div id="addRequest" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Adicionar Pedido</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    		<div class="grid_new_request">
+			    			<div>
+			    				Nome<br>
+			    				<input type="text" class="text-filtro" name="text_new_name_request_save" id="text_new_name_request_save" >
+			    			</div>
+			    			<div>
+			    				Tempo<br>
+			    				<input type="time" class="text-filtro" name="text_new_time_request" id="text_new_time_request" >
+			    			</div>
+			    			
+			    			<div>Valor<br>
+			    				<input id="text_valor" class="text-filtro" type="text">
+			    			</div>
+			    			<div class="spacing_top">
+			    				Especialidade<br>
+			    					<div class="grid_select_speciality_request">
+			    						<div class="div_select_escolha">
+						    				<span class="subtitle_select_speciality">Escolha</span>
+						    				<select class="select_speciality_request_add" size="5">
+						    					<option value="ADMINISTRADOR">Administrador</option>
+						    					<option value="BARBEIRO">Barbeiro</option>
+						    					<option value="CABELEIREIRO">Cabeleireiro</option>
+						    					<option value="MANICURE">Manicure</option>
+						    					<option value="PEDICURE">Pedicure</option>
+						    				</select>
+						    			</div>
+					    				<div class="div_select_escolhidos">
+						    				<span class="subtitle_select_speciality">Escolhidos</span>
+						    				<select class="select_speciality_request_receive" size="5">
+						    					
+						    				</select>
+						    			</div>
+					    			</div>
+					    			<br>
+					    			<div align="center" class="btn_specialitys_save_return">
+					    				<div><a href="#" class="selected_speciality_request"><img src='img/icon-one-object.png' height="20" width="20"></a></div> <br> 
+					    				<div><a href="#" class="selected_speciality_request_return"><img src='img/icon-one-object-inversion.png' height="20" width="20"></a></div>
+					    			</div>
+			    			</div>
+			    		</div>
+			    	</div>
+			    	
+					<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="submit" class="btn_add_request">Adicionar</button><button type="button" class="btn_close_add_request">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+</div>
+
+<div id="addProduct" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Adicionar Produto</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    		<div class="grid_new_product">
+			    			<div>
+			    				Nome<br>
+			    				<input type="text" class="text-filtro" name="text_new_name_product_save" id="text_new_name_product_save" >
+			    			</div>
+			    			
+			    			<div>Valor<br>
+			    				<input id="text_valor_product" class="text-filtro" type="text">
+			    			</div>
+			    			
+			    		</div>
+			    	</div>
+			    	
+					<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="submit" class="btn_add_product">Adicionar</button><button type="button" class="btn_close_add_product">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+</div>
+
+<div id="editEmployeeModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Editar Funcionário</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    		<div class="grid_edit_employee">
+			    			<div>
+			    				Nome<br>
+			    				<input type="text" class="text-filtro" name="text_edit_name_employee" id="text_edit_name_employee" >
+			    			</div>
+			    			<div>
+			    				Tipo<br>
+			    				<select id="select_edit_tipo_employee" class="select-filtro">
+			    					<option value='BARBEIRO'>BARBEIRO</option>
+			    					<option value='PEDICURE'>PEDICURE</option>
+			    					<option value='CABELEIREIRO'>CABELEIREIRO</option>
+			    					<option value='MANICURE'>MANICURE</option>
+			    				</select>
+			    			</div>
+			    			<div>
+			    				CPF<br>
+			    				<input type="text" id="text_edit_cpf_employee" class="text-filtro">
+			    			</div>
+			    			<div>
+			    				Dt.Nascimento<br>
+			    				<input type="date" id="text_edit_date_employee" class="text-filtro">
+			    			</div>
+			    			<div>
+			    				E-mail<br>
+			    				<input type="text" id="text_edit_email_employee" class="text-filtro">
+			    			</div>
+			    			<div>
+			    				Telefone<br>
+			    				<input type="text" id="text_edit_telefone_employee" class="text-filtro telefone">
+			    			</div>
+			    			<div>
+			    				Endereço<br>
+			    				<textarea rows="5" cols="70" id="text_edit_endereco_employee"></textarea>
+			    			</div>
+			    		</div>
+			    	</div>
+			    	
+			    	<input type="hidden" value='' id="idUserFromEmployee">
+			    	
+					<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="submit" class="btn_edit_employee">Atualizar</button><button type="button" class="btn_close_edit_employee">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+</div>
+
+<div id="editRequestModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Editar Pedido</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    		<div class="grid_edit_request">
+			    		<div>
+			    				Nome<br>
+			    				<input type="text" class="text-filtro" name="text_edit_name_request" id="text_edit_name_request" >
+			    		</div>
+			    		
+			    		<div>
+			    				Tempo<br>
+			    				<input type="time" id="text_edit_time_request" class="text-filtro">
+			    		</div>
+			    		
+			    		<div>
+			    				Preço<br>
+			    				<input type="text" id="text_edit_preco_request" class="text-filtro">
+			    		</div>
+			    			
+			    		</div>
+			    	</div>
+			    	
+			    	<input type="hidden" value='' id="idRequestEdit">
+			    	
+					<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="submit" class="btn_edit_request">Atualizar</button><button type="button" class="btn_close_edit_request">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+</div>
+
+<div id="editProductModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Editar Produto</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    		<div class="grid_edit_request">
+			    		<div>
+			    				Nome<br>
+			    				<input type="text" class="text-filtro" name="text_edit_name_product" id="text_edit_name_product" >
+			    		</div>
+			    		
+			    		<div>
+			    				Preço<br>
+			    				<input type="text" id="text_edit_preco_product" class="text-filtro">
+			    		</div>
+			    			
+			    		</div>
+			    	</div>
+			    	
+			    	<input type="hidden" value='' id="idProductEdit">
+			    	
+					<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="submit" class="btn_edit_product">Atualizar</button><button type="button" class="btn_close_edit_product">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+</div>
+
+<div id="editPassword" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Alterar Senha</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    		<div class="grid_edit_password">
+			    		<div>
+			    				Nova Senha<br>
+			    				<input type="password" class="text-filtro" name="text_edit_password" id="text_edit_password" required >
+			    		</div>
+			    		
+			    		<div>
+			    				Confirmar Senha<br>
+			    				<input type="password" id="text_edit_confirm_password" name="text_edit_confirm_password" class="text-filtro" required>
+			    		</div>
+			    			
+			    		</div>
+			    	</div>
+			    	
+			    	<input type="hidden" value='' id="idUserFromPassword" name="idUserFromPassword">
+			    	
+					<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" class="btn_edit_password">Atualizar</button><button type="button" class="btn_close_edit_password">Cancelar</button></div>
+			    	</div>
+			    </div>
+			    	
+			    	
+			    	
+			 </div>
+</div>
+
+<div id="discountModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Desconto do Aniversariante</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    		<div class="grid_discount">
+				    		<div class="div_text_value_discount"><span>Valor:</span><input type="text" id="value_discount" size="7"/> % <br><button type="button" class="btn_update_value_discount">Atualizar</button></div>
+				    		
+				    		<div>
+					    		<span>Ativo:</span>
+						    		
+										<div class="liga-desliga">
+											<input type="checkbox" class="liga-desliga__checkbox" id="liga-desliga">
+											<label for="liga-desliga" class="liga-desliga__botao"></label>
+										</div>
+							</div>
+						</div>
+			    	</div>
+			    	
+			    	
+			    	
+					<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" class="btn_close_discount">Fechar</button></div>
+			    	</div>
+			    </div>
+			   
+			    	
+			    	
+			 </div>
+</div>
+
+<div id="typesProfileModal" class="modal modal-group fade" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div id="modal-content-continue" class="modal-content modal-continue">
+			    	<div class="modal-header">
+			    		<h3>Especialidade(s)</h3>
+			    	</div>
+			    	
+			    	<div class="modal-body">
+			    		<table class="table_type_profiles" border="1">
+			    			
+			    		</table>
+			    	</div>
+			    	
+			    	
+			    	
+					<div class="modal-footer">
+			    		<div class="btn_submit_cancel"><button type="button" class="btn_close_type_profiles">Fechar</button></div>
+			    	</div>
+			    </div>
+			   
+			    	
+			    	
+			 </div>
+</div>
+
+</body>
+</html>

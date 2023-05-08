@@ -1,0 +1,39 @@
+- Instalação do tomcat8: https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-ubuntu-16-04
+
+update maven - para ele adaptar o projeto como web e war
+
+botão direito em cima do projeto, opção export, depois opção war
+
+salve o arquivo.war dentro da pasta do projeto
+
+- navegue até a pasta de logs do tomcat:
+
+cd /opt/tomcat/logs
+
+- Pare o serviço do tomcat:
+
+sudo systemctl stop tomcat
+
+- coloque o arquivo na pasta:
+
+cd /opt/tomcat/webapps
+
+- Inicie o tomcat:
+
+ sudo systemctl start tomcat
+
+- Visualizar os logs dentro da pasta logs do tomcat:
+
+tail -f catalina.out
+
+- coloque os arquivos de de js,css,img e bootstrap dentro da pasta do projeto que fez deploy
+
+- Crie uma pasta chamada img dentro da pasta static:
+
+/opt/tomcat/webapps/BarberShopFreeStyle/WEB-INF/classes/static
+
+- coloque a imagem barbearia-fundo-index-orig-to-pdf dentro dessa pasta
+
+
+
+

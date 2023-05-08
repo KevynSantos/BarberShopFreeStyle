@@ -1,0 +1,139 @@
+<html>
+<head>
+<style>
+body {
+ background-repeat: no-repeat;
+ background-size: 100% 100%; 
+  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+}
+</style>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/bootstrap-3.3.0/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/toastr.css}">
+<link rel="stylesheet" th:href="@{/css/home.css}">
+<link rel="stylesheet" th:href="@{/css/utils.css}">
+<link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
+<link rel="stylesheet" th:href="@{/css/toastr.css}">
+<script type="text/javascript" th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jQuery-Mask-Plugin-master/src/jquery.mask.js}"></script>
+<script src="js/toastr.js"></script>
+<script type="text/javascript" th:src="@{/js/home.js}"></script>
+<script src="js/toastr.js"></script>
+<script type="text/javascript" th:src="@{/bootstrap-3.3.0/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.maskMoney.js}"></script>
+<script type="text/javascript" th:src="@{/js/Validation.js}"></script>
+<script type="text/javascript" th:src="@{/js/ChangeData.js}"></script>
+<script type="text/javascript" th:src="@{/js/utils.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+
+    var contextPath = /*[[@{/}]]*/'';
+
+ /*]]>*/
+ </script>
+</head>
+<body>
+<p class="title_project">Barber Shop FreeStyle</p>
+<div class="div_table_login">
+<table  class="table_login">
+<tr><th>Bem vindo(a): <br> <br> <label th:text="${user.login}"></label><br> <br> 
+	<span th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><label class="typeProfileAdministrador">GESTOR</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='BARBEIRO'}"><label class="typeProfileBarbeiro">BARBEIRO</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='PEDICURE'}"><label class="typeProfilePedicure">PEDICURE</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='CABELEIREIRO'}"><label class="typeProfileCabelereiro">CABELEIREIRO</label></span>
+	<span th:if="${user.tipoPerfil.getTipo().name()=='MANICURE'}"><label class="typeProfileManicure">MANICURE</label></span>
+</th></tr>
+<tr><td><hr></td></tr>
+<tr><td class="td_login"><a href='#' class='changeDataBtn'>Alterar Dados</a></td></tr>
+<tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a th:href="@{/management}">Gestão</a></td></tr>
+<tr><td><a th:href="@{/us/logoff}">Sair</a></td></tr>
+</table>
+</div>
+<h4 class="subtitle_home">Escolha uma Opção:</h4>
+
+
+<div class="grid_menu">
+
+<div>
+<a th:href="@{/addService}" class="servicesNow">
+<img src="img/iconAdd.png" width="100%" height="100%">
+<p>Adicionar Serviço</p></a>
+</div>
+
+<div>
+<a th:href="@{/addScheduling}" class="marcaHora">
+<img src="img/agendamentoIcon.png" width="50%" height="100%">
+<p>Agendar Serviço</p></a>
+</div>
+
+<div>
+<a th:href="@{/services}" class="servicesNow">
+<img src="img/cadernoIcon.png" width="50%" height="100%">
+<p>Serviços</p></a>
+</div>
+
+<div>
+<a th:href="@{/schedules}" class="marcaHora">
+<img src="img/agendamentosListIcon.png" width="50%" height="100%">
+<p>Agendamentos</p></a>
+</div>
+
+<div>
+<a th:href="@{/clients}">
+<img src="img/iconClient.png" width="50%" height="100%">
+<p>Clientes</p></a>
+</div>
+
+</div>
+
+<!-- Quem pode agendar -->
+<script th:if="${!user.funcionario.marcaHora and user.tipoPerfil.getTipo().name()!='ADMINISTRADOR'}">
+	
+	$(".marcaHora").attr("href","#");
+	$(".marcaHora").css({cursor:"default"});
+	$(".marcaHora, .marcaHora p").css({filter : "invert(35%)"});
+	
+</script>
+<!-- Quem pode realizar serviço -->
+<script th:if="${user.funcionario.marcaHora and user.tipoPerfil.getTipo().name()!='ADMINISTRADOR'}">
+	
+	$(".servicesNow").attr("href","#");
+	$(".servicesNow").css({cursor:"default"});
+	$(".servicesNow, .servicesNow p").css({filter : "invert(35%)"});
+	
+</script>
+
+<span th:if="${param.message != null}">
+
+	<script>
+		window.onload = function() {
+			
+			toastr.options = {
+					  "closeButton": false,
+					  "debug": false,
+					  "newestOnTop": false,
+					  "progressBar": false,
+					  "positionClass": "toast-bottom-right",
+					  "preventDuplicates": false,
+					  "onclick": null,
+					  "showDuration": "300",
+					  "hideDuration": "1000",
+					  "timeOut": "5000",
+					  "extendedTimeOut": "1000",
+					  "showEasing": "swing",
+					  "hideEasing": "linear",
+					  "showMethod": "fadeIn",
+					  "hideMethod": "fadeOut"
+					};
+			
+			toastr.warning('Usuário sem permissão!');
+			
+		};
+	</script>
+
+</span>
+
+
+
+</body>
+</html>

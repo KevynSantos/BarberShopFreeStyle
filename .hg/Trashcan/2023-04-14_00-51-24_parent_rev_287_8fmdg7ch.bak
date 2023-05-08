@@ -1,0 +1,13 @@
+diff -r 8ef88c5762bf src/main/resources/application.properties
+--- a/src/main/resources/application.properties	Fri Apr 14 00:34:21 2023 -0300
++++ b/src/main/resources/application.properties	Fri Apr 14 00:51:24 2023 -0300
+@@ -1,6 +1,6 @@
+-spring.datasource.url=jdbc:mysql://localhost:3306/barbershopfreestyle?useTimezone=true&serverTimezone=America/Sao_Paulo&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
+-spring.datasource.username=root
+-spring.datasource.password=
++spring.datasource.url=jdbc:mysql://191.252.194.226:3306/barbershopfreestyle?useTimezone=true&serverTimezone=America/Sao_Paulo&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
++spring.datasource.username=devKevyn
++spring.datasource.password=s0ftw@r&
+ spring.resources.static-locations=file:///e:/workspace-kevyn/BarberShopFreeStyle/src/main/resources/static
+ spring.jpa.properties.hibernate.current_session_context_class=org.springframework.orm.hibernate5.SpringSessionContext
+ spring.jpa.properties.hibernate.show_sql=true

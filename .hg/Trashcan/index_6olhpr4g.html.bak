@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+body {
+ background-repeat: no-repeat;
+ background-size: 100% 100%; 
+  background: url([[@{/img/barbearia-fundo-index-orig.jpg}]]);
+}
+</style>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/bootstrap-3.3.0/bootstrap.min.css}">
+<script type="text/javascript" th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap-3.3.0/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/utils.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+
+    var contextPath = /*[[@{/}]]*/'';
+
+ /*]]>*/
+ </script>
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/utils.css">
+</head>
+<body>
+
+
+<span th:if="${param.error != null}">
+
+	<script>
+		window.onload = function() {
+			$(document.querySelectorAll("#loginAndPasswordIncorrect")).modal();
+			
+			$(".btn_ok").click(function(){
+				$("#loginAndPasswordIncorrect").modal('hide');
+			});
+		};
+	</script>
+
+</span>
+
+<p class="title_project">Barber Shop FreeStyle</p>
+
+
+<form th:action="@{/us/login/}" method="POST">
+
+<div class="form_login">
+
+<table>
+<tr><td class="title_login">Faça o seu Login:</td></tr>
+<tr><td class="field_login_senha">Login <input type="text" name="login" id="login" class='spacing' required></td></tr>
+<tr><td class="field_login_senha">Senha <input type="password" name="senha" required></td></tr>
+<tr><td class="td_btn_submit_reset"><button type="submit" class="btn_submit_reset">Entrar</button><button type="reset" class="btn_submit_reset">Apagar</button></td></tr>
+
+</table>
+
+</div>
+
+</form>
+
+<div id="loginAndPasswordIncorrect" class="modal modal-group fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div id="modal-content-continue" class="modal-content modal-continue">
+		    	<div class="modal-header">
+		    		<h3>Aviso</h3>
+		    	</div>
+		    	
+		    	<div class="modal-body">
+		    	
+		    	<label id='lbl_info_adress'>Login ou Senha Incorretos.</label>	
+		    	
+		    	
+		    	
+		    			
+		    	</div>
+		    	<div class="modal-footer">
+		    		<div class="btn_submit_cancel"><button type="button" class="btn_ok">OK</button></div>
+		    	</div>
+		    </div>
+		 </div>
+</div>
+</body>	
+</html>

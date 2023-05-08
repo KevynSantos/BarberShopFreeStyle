@@ -1,0 +1,134 @@
+diff -r 7685a18bf39f .classpath
+--- a/.classpath	Thu May 04 21:58:31 2023 -0300
++++ b/.classpath	Fri May 05 00:59:59 2023 -0300
+@@ -26,6 +26,7 @@
+ 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
++			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+ 		</attributes>
+ 	</classpathentry>
+ 	<classpathentry kind="output" path="target/classes"/>
+diff -r 7685a18bf39f .project
+--- a/.project	Thu May 04 21:58:31 2023 -0300
++++ b/.project	Fri May 05 01:00:00 2023 -0300
+@@ -6,6 +6,11 @@
+ 	</projects>
+ 	<buildSpec>
+ 		<buildCommand>
++			<name>org.eclipse.wst.common.project.facet.core.builder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
+ 			<name>org.eclipse.jdt.core.javabuilder</name>
+ 			<arguments>
+ 			</arguments>
+@@ -15,7 +20,12 @@
+ 			<arguments>
+ 			</arguments>
+ 		</buildCommand>
++		<buildCommand>
++			<name>org.eclipse.wst.validation.validationbuilder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
+ 	</buildSpec>
+ 	<natures>
+ 		<nature>org.eclipse.jdt.core.javanature</nature>
+ 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+@@ -18,6 +28,8 @@
+ 	</buildSpec>
+ 	<natures>
+ 		<nature>org.eclipse.jdt.core.javanature</nature>
+ 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
++		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
++		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
+ 	</natures>
+ </projectDescription>
+diff -r 7685a18bf39f src/main/resources/application.properties
+--- a/src/main/resources/application.properties	Thu May 04 21:58:31 2023 -0300
++++ b/src/main/resources/application.properties	Fri May 05 01:00:00 2023 -0300
+@@ -1,6 +1,6 @@
+-spring.datasource.url=jdbc:mysql://localhost:3306/barbershopfreestyle?useTimezone=true&serverTimezone=America/Sao_Paulo&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
+-spring.datasource.username=root
+-spring.datasource.password=
++spring.datasource.url=jdbc:mysql://191.252.194.226:3306/barbershopfreestyle?useTimezone=true&serverTimezone=America/Sao_Paulo&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
++spring.datasource.username=devKevyn
++spring.datasource.password=s0ftw@r&
+ spring.resources.static-locations=file:///e:/workspace-kevyn/BarberShopFreeStyle/src/main/resources/static
+ spring.jpa.properties.hibernate.current_session_context_class=org.springframework.orm.hibernate5.SpringSessionContext
+ spring.jpa.properties.hibernate.show_sql=true
+diff -r 7685a18bf39f target/classes/application.properties
+--- a/target/classes/application.properties	Thu May 04 21:58:31 2023 -0300
++++ b/target/classes/application.properties	Fri May 05 01:00:01 2023 -0300
+@@ -1,6 +1,6 @@
+-spring.datasource.url=jdbc:mysql://localhost:3306/barbershopfreestyle?useTimezone=true&serverTimezone=America/Sao_Paulo&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
+-spring.datasource.username=root
+-spring.datasource.password=
++spring.datasource.url=jdbc:mysql://191.252.194.226:3306/barbershopfreestyle?useTimezone=true&serverTimezone=America/Sao_Paulo&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
++spring.datasource.username=devKevyn
++spring.datasource.password=s0ftw@r&
+ spring.resources.static-locations=file:///e:/workspace-kevyn/BarberShopFreeStyle/src/main/resources/static
+ spring.jpa.properties.hibernate.current_session_context_class=org.springframework.orm.hibernate5.SpringSessionContext
+ spring.jpa.properties.hibernate.show_sql=true
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/AbstractController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/AbstractController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/BarberShopFreeStyleController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/BarberShopFreeStyleController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/ClientController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/ClientController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/IndexController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/IndexController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/RequestController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/RequestController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/SchedulingController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/SchedulingController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/ServiceController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/ServiceController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/controllers/UserController.class
+Binary file target/classes/br/com/BarberShopFreeStyle/controllers/UserController.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/AbstractDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/AbstractDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/ClientDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/ClientDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/RequestDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/RequestDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/RequestServiceDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/RequestServiceDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/SchedulingDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/SchedulingDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/ServiceDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/ServiceDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/UserDao.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/UserDao.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/AbstractDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/AbstractDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/ClientDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/ClientDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/RequestDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/RequestDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/RequestServiceDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/RequestServiceDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/SchedulingDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/SchedulingDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/ServiceDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/ServiceDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/daos/impl/UserDaoImpl.class
+Binary file target/classes/br/com/BarberShopFreeStyle/daos/impl/UserDaoImpl.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/enums/Access.class
+Binary file target/classes/br/com/BarberShopFreeStyle/enums/Access.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/enums/StatusService.class
+Binary file target/classes/br/com/BarberShopFreeStyle/enums/StatusService.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/enums/TypeProfile.class
+Binary file target/classes/br/com/BarberShopFreeStyle/enums/TypeProfile.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/Agendamento.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/Agendamento.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/Cliente.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/Cliente.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/Funcionario.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/Funcionario.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/Pedido.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/Pedido.class has changed
+diff -r 7685a18bf39f target/classes/br/com/BarberShopFreeStyle/models/PedidoServico.class
+Binary file target/classes/br/com/BarberShopFreeStyle/models/PedidoServico.class has changed
