@@ -278,3 +278,13 @@ INSERT INTO `pedido_tipo_perfil` VALUES(null,30,3);
 INSERT INTO `pedido_tipo_perfil` VALUES(null,31,3);
 INSERT INTO `pedido_tipo_perfil` VALUES(null,32,3);
 
+create table confirma_email
+(
+	id_confirma_email int primary key not null auto_increment,
+    email varchar(50),
+    codigo varchar(10),
+    data_confirmacao datetime,
+    data datetime,
+    id_usuario int,
+    id_cliente int
+)

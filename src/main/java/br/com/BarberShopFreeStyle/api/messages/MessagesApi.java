@@ -15,7 +15,17 @@ public enum MessagesApi
 	
 	LOGIN_FIELDS_EMPTY("Login ou senha não preenchidos"),
 	
-	SUCCESS("Sucesso");
+	SUCCESS("Sucesso"),
+	
+	PARAM_CODE("code"),
+	
+	PARAM_MESSAGE("message"),
+	
+	EMAIL_IS_NOT_VALID("E-mail é inválido"),
+	
+	EMAIL_IS_EMPTY("E-mail não pode ser vazio"),
+	
+	EMAIL_NOT_SEND("Ocorreu um erro ao tentar enviar o email para esse destinatário: %S");
 	
 	MessagesApi(String message)
 	{

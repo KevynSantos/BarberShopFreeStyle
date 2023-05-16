@@ -98,7 +98,7 @@ Binary file target/test-classes/br/com/BarberShopFreeStyle/BarberShopFreeStyleAp
 
 diff -r 7685a18bf39f src/main/resources/application.properties
 --- a/src/main/resources/application.properties	Thu May 04 21:58:31 2023 -0300
-+++ b/src/main/resources/application.properties	Fri May 05 01:01:10 2023 -0300
++++ b/src/main/resources/application.properties	Tue May 16 15:02:47 2023 -0300
 @@ -1,6 +1,6 @@
 -spring.datasource.url=jdbc:mysql://localhost:3306/barbershopfreestyle?useTimezone=true&serverTimezone=America/Sao_Paulo&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
 -spring.datasource.username=root

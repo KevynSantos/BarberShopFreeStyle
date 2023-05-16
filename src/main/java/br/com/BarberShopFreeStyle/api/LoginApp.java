@@ -38,8 +38,8 @@ public class LoginApp
 
 		if ( Strings.isBlank( login ) || Strings.isBlank( password ) )
 		{
-			result.put( "code", MessagesApi.LOGIN_FIELDS_EMPTY.toString() );
-			result.put( "message", MessagesApi.LOGIN_FIELDS_EMPTY.getMessage() );
+			result.put( MessagesApi.PARAM_CODE.getMessage(), MessagesApi.LOGIN_FIELDS_EMPTY.toString() );
+			result.put( MessagesApi.PARAM_MESSAGE.getMessage(), MessagesApi.LOGIN_FIELDS_EMPTY.getMessage() );
 			return Conversion.convertToJson( result );
 		}
 
@@ -47,12 +47,12 @@ public class LoginApp
 
 		if ( user == null )
 		{
-			result.put( "code", MessagesApi.LOGIN_INCORRECT.toString() );
-			result.put( "message", MessagesApi.LOGIN_INCORRECT.getMessage() );
+			result.put( MessagesApi.PARAM_CODE.getMessage(), MessagesApi.LOGIN_INCORRECT.toString() );
+			result.put( MessagesApi.PARAM_MESSAGE.getMessage(), MessagesApi.LOGIN_INCORRECT.getMessage() );
 			return Conversion.convertToJson( result );
 		}
 
-		result.put( "code", MessagesApi.SUCCESS.toString() );
+		result.put( MessagesApi.PARAM_CODE.getMessage(), MessagesApi.SUCCESS.toString() );
 		result.put( "idUser", user.getId() );
 		result.put( "profile", user.getTipoPerfil().getTipo().toString() );
 
