@@ -3,8 +3,19 @@ package br.com.BarberShopFreeStyle.daos.impl;
 import br.com.BarberShopFreeStyle.daos.ConfirmEmailDao;
 import br.com.BarberShopFreeStyle.models.ConfirmEmail;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -74,6 +85,50 @@ public class ConfirmEmailDaoImpl
 	 * <p>
 	 * </p>
 	 *
+	 * @param email
+	 * @param code
+	 * @return
+	 * @see br.com.BarberShopFreeStyle.daos.ConfirmEmailDao#getByEmailAndCode(java.lang.String,
+	 *      java.lang.String)
+	 */
+	@Override
+	public ConfirmEmail getByEmailAndCode( final String email, final String code )
+	{
+		final CriteriaBuilder cb = this.em.getCriteriaBuilder();
+		final CriteriaQuery<ConfirmEmail> q = cb.createQuery( ConfirmEmail.class );
+		final Root<ConfirmEmail> c = q.from( ConfirmEmail.class );
+		final Predicate conditions = cb.and( cb.equal( c.get( "code" ), code ), cb.equal( c.get( "email" ), email ) );
+		final List<Order> orderList = new ArrayList();
+		orderList.add( cb.desc( c.get( "date" ) ) );
+		q.where( conditions );
+		q.select( c );
+		q.orderBy( orderList );
+
+		ConfirmEmail result;
+
+		final EntityManager entityManager = this.em.createEntityManager();
+
+		try
+		{
+
+			result = entityManager.createQuery( q ).getSingleResult();
+		}
+		catch ( final NoResultException e )
+		{
+			result = null;
+		}
+		finally
+		{
+			entityManager.close();
+		}
+
+		return result;
+	}
+
+	/**
+	 * <p>
+	 * </p>
+	 *
 	 * @param id
 	 * @return
 	 * @see br.com.BarberShopFreeStyle.daos.AbstractDao#getById(java.lang.Object)
@@ -111,5 +166,8 @@ public class ConfirmEmailDaoImpl
 	{
 		return null;
 	}
+
+	@Autowired
+	private EntityManagerFactory em;
 
 }

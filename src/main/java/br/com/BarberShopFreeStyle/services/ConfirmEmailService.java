@@ -16,4 +16,6 @@ public interface ConfirmEmailService
 	String generateCodeVerificationEmail();
 
 	ConfirmEmail save( String email, String code );
+	
+	ConfirmEmail getByEmailAndCode(String email, String code);
 }

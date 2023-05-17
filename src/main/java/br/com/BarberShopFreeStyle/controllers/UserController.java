@@ -2,6 +2,7 @@ package br.com.BarberShopFreeStyle.controllers;
 
 import br.com.BarberShopFreeStyle.dtos.StatusCrudDto;
 import br.com.BarberShopFreeStyle.enums.StatusChangedPassword;
+import br.com.BarberShopFreeStyle.enums.TypeProfile;
 import br.com.BarberShopFreeStyle.models.Usuario;
 import br.com.BarberShopFreeStyle.services.UserService;
 import br.com.BarberShopFreeStyle.utils.Conversion;
@@ -214,7 +215,7 @@ public class UserController
 
 		ModelAndView page;
 
-		if ( user == null )
+		if ( user == null || TypeProfile.CLIENTE.equals( user.getTipoPerfil().getTipo() ) )
 		{
 			page = new ModelAndView( "redirect:/" );
 			page.addObject( "error", "loginIncorrect" );

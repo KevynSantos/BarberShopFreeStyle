@@ -2,6 +2,7 @@ package br.com.BarberShopFreeStyle.api;
 
 import br.com.BarberShopFreeStyle.api.messages.MessagesApi;
 import br.com.BarberShopFreeStyle.dtos.app.RegisterDto;
+import br.com.BarberShopFreeStyle.models.ConfirmEmail;
 import br.com.BarberShopFreeStyle.services.ConfirmEmailService;
 import br.com.BarberShopFreeStyle.services.RegisterServiceApp;
 import br.com.BarberShopFreeStyle.services.SimpleEmailService;
@@ -10,6 +11,7 @@ import br.com.BarberShopFreeStyle.utils.Conversion;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.mail.MessagingException;
 
@@ -37,6 +39,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RegisterApp
 {
 
+	@PostMapping( value = "/confirmCodeEmail", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
+	public String confirmCodeEmail( @RequestBody final MultiValueMap<String, Object> info )
+		throws JsonProcessingException
+	{
+		final HashMap<String, Object> result = new HashMap<>();
+
+		final RegisterDto dto = getDtoRegister( info );
+
+		final Pair<Boolean, HashMap<String, Object>> pair = this.registerServiceApp
+			.validFieldsForConfirmCodeVerification( dto );
+
+		if ( !pair.getFirst() )
+		{
+			return Conversion.convertToJson( pair.getSecond() );
+		}
+
+		final ConfirmEmail object = this.confirmEmailService
+			.getByEmailAndCode( dto.getEmail(), dto.getConfirmCodeEmail() );
+
+		if ( Objects.isNull( object ) )
+		{
+			result.put( MessagesApi.PARAM_CODE.getMessage(), MessagesApi.INVALID_CODE.toString() );
+			result.put( MessagesApi.PARAM_MESSAGE.getMessage(), MessagesApi.INVALID_CODE.getMessage() );
+			return Conversion.convertToJson( result );
+		}
+
+		result.put( MessagesApi.PARAM_CODE.getMessage(), MessagesApi.SUCCESS.toString() );
+
+		return Conversion.convertToJson( result );
+	}
+
 	private RegisterDto getDtoRegister( final MultiValueMap<String, Object> info )
 	{
 		final Map<String, Object> map = info.toSingleValueMap();
@@ -44,6 +77,33 @@ public class RegisterApp
 		final RegisterDto dto = mapper.convertValue( map, RegisterDto.class );
 
 		return dto;
+	}
+
+	@PostMapping( value = "/user", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
+	public String registerUser( @RequestBody final MultiValueMap<String, Object> info )
+		throws JsonProcessingException
+	{
+		final HashMap<String, Object> result = new HashMap<>();
+
+		final RegisterDto dto = getDtoRegister( info );
+
+		final Pair<Boolean, HashMap<String, Object>> pair = this.registerServiceApp.validFieldsForRegisterUser( dto );
+
+		if ( !pair.getFirst() )
+		{
+			return Conversion.convertToJson( pair.getSecond() );
+		}
+
+		final Pair<Boolean, HashMap<String, Object>> user = this.registerServiceApp.createClient( dto );
+
+		if ( !user.getFirst() )
+		{
+			return Conversion.convertToJson( user.getSecond() );
+		}
+
+		result.put( MessagesApi.PARAM_CODE.getMessage(), MessagesApi.SUCCESS.toString() );
+
+		return Conversion.convertToJson( result );
 	}
 
 	@PostMapping( value = "/sendCodeVerificationEmail", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )

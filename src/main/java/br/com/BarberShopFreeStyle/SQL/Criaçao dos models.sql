@@ -10,6 +10,7 @@ CREATE TABLE `usuario` (
   `senha` varchar(10) DEFAULT NULL,
   `id_tipo_perfil` int(11) DEFAULT NULL,
   `id_funcionario` int(11) DEFAULT NULL,
+  `id_cliente` int(11) DEFAULT NULL,
   `data_exclusao` datetime DEFAULT NULL,
   PRIMARY KEY (`id_usuario`)
 );
@@ -171,11 +172,11 @@ INSERT INTO `pedido` VALUES
 
 -- Tipo Perfil
 
-INSERT INTO `tipo_perfil` VALUES (1,'ADMINISTRADOR'),(2,'BARBEIRO'),(3,'PEDICURE'),(4,'CABELEIREIRO'),(5,'MANICURE');
+INSERT INTO `tipo_perfil` VALUES (1,'ADMINISTRADOR'),(2,'BARBEIRO'),(3,'PEDICURE'),(4,'CABELEIREIRO'),(5,'MANICURE'),(6,'CLIENTE');
 
 -- Usuário
 
-INSERT INTO `usuario` VALUES (1,'marcelo','123',1,1,null),(2,'Claudio','123',2,2,null),(3,'Eduarda','123',3,3,null),(4,'Sueli','123',4,4,null),(5,'Iago','123',5,5,null);
+INSERT INTO `usuario` VALUES (1,'marcelo','123',1,1,null,null),(2,'Claudio','123',2,2,null,null),(3,'Eduarda','123',3,3,null,null),(4,'Sueli','123',4,4,null,null),(5,'Iago','123',5,5,null,null);
 
 INSERT INTO `desconto` VALUES(1,'5',0);
 

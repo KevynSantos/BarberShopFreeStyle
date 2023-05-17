@@ -31,6 +31,41 @@ public interface UserService
 		throws ParseException,
 			Exception;
 
+	/**
+	 * <p>
+	 * </p>
+	 *
+	 * @param name
+	 * @param cpf
+	 * @param dateNasc
+	 * @param email
+	 * @param telefone
+	 * @param adress
+	 * @param login
+	 * @param password
+	 * @return
+	 * @throws Exception
+	 */
+	List<StatusCrudDto> addClientInApp(
+		final String name,
+		final String cpf,
+		final String dateNasc,
+		final String email,
+		final String telefone,
+		final String adress,
+		final String password )
+		throws Exception;
+
+	List<StatusCrudDto> changeData(
+		String name,
+		String cpf,
+		String dateNasc,
+		String email,
+		String telefone,
+		String adress,
+		String password,
+		Usuario user );
+
 	void downloadExcel( List<Usuario> listUsers, ServletOutputStream outputStream )
 		throws IOException;
 
@@ -39,10 +74,11 @@ public interface UserService
 
 	Usuario getByLoginAndPassword( String login, String password );
 
-	Page<Usuario> getResultPage( Integer pageNumber, Integer pageSize );
-	
+	void getEmployeeRanking( Usuario usuario, ServletOutputStream outputStream )
+		throws IOException,
+			ParseException;
 
-	void getEmployeeRanking(Usuario usuario, ServletOutputStream outputStream) throws IOException, ParseException;
+	Page<Usuario> getResultPage( Integer pageNumber, Integer pageSize );
 
 	/**
 	 * <p>
@@ -80,13 +116,5 @@ public interface UserService
 		Long idUser )
 		throws ParseException,
 			Exception;
-
-	List<StatusCrudDto> changeData(String name,
-			String cpf,
-			String dateNasc,
-			String email,
-			String telefone,
-			String adress,
-			String password, Usuario user);
 
 }

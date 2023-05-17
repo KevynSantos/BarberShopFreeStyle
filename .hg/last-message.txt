@@ -1,1 +1,1 @@
-Adicionando envio de código de verificação por e-mail
+Aperfeiçando controller de envio de código de verificação

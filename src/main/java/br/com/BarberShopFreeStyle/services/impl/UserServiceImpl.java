@@ -1,5 +1,6 @@
 package br.com.BarberShopFreeStyle.services.impl;
 
+import br.com.BarberShopFreeStyle.daos.ClientDao;
 import br.com.BarberShopFreeStyle.daos.EmployeeDao;
 import br.com.BarberShopFreeStyle.daos.ServiceDao;
 import br.com.BarberShopFreeStyle.daos.TipoPerfilDao;
@@ -155,6 +156,86 @@ public class UserServiceImpl<T>
 	}
 
 	@Override
+	public List<StatusCrudDto> addClientInApp(
+		final String name,
+		final String cpf,
+		final String dateNasc,
+		final String email,
+		final String telefone,
+		final String adress,
+		final String password )
+		throws Exception
+	{
+
+		final List<StatusCrudDto> listStatus = new ArrayList<>();
+
+		try
+		{
+
+			if ( !Validation.validateTelefone( telefone ) )
+			{
+				listStatus.add( new StatusCrudDto( StatusCrudEnum.TELEPHONE_INVALID, null ) );
+			}
+
+			if ( !checkCpfAdd( cpf ) )
+			{
+				listStatus.add( new StatusCrudDto( StatusCrudEnum.CPF_INVALID, null ) );
+			}
+
+			if ( !Validation.validateEmail( email ) )
+			{
+				listStatus.add( new StatusCrudDto( StatusCrudEnum.EMAIL_INVALID, null ) );
+			}
+
+			final Usuario usuario = this.userDao.getByLogin( email );
+
+			if ( usuario != null )
+			{
+				listStatus.add( new StatusCrudDto( StatusCrudEnum.LOGIN_EXIST, null ) );
+			}
+
+			if ( !listStatus.isEmpty() )
+			{
+				return listStatus;
+			}
+
+			final Cliente cliente = new Cliente();
+
+			cliente.setCpf( cpf );
+			cliente.setDtNascimento( Conversion.convertDateSqlApp( dateNasc ) );
+			cliente.setEmail( email );
+			cliente.setEndereco( adress );
+			cliente.setTelefone( telefone );
+			final TypeProfile type = TypeProfile.CLIENTE;
+			cliente.setNome( name );
+
+			this.clientDao.insert( cliente );
+
+			final Usuario user = new Usuario();
+			user.setCliente( cliente );
+			user.setLogin( email );
+			user.setPassword( password );
+
+			final TipoPerfil tipo = this.tipoPerfilDao.getByType( type );
+
+			user.setTipoPerfil( tipo );
+
+			this.userDao.insert( user );
+
+			listStatus.add( new StatusCrudDto( StatusCrudEnum.SUCCESS, null ) );
+
+		}
+		catch ( final Exception e )
+		{
+			LOG.error( e );
+			listStatus.add( new StatusCrudDto( StatusCrudEnum.ERROR, e.getMessage() ) );
+		}
+
+		return listStatus;
+
+	}
+
+	@Override
 	public List<Usuario> all()
 	{
 		// TODO Auto-generated method stub
@@ -177,6 +258,104 @@ public class UserServiceImpl<T>
 			return conditions;
 
 		};
+	}
+
+	@Override
+	public List<StatusCrudDto> changeData(
+		final String name,
+		final String cpf,
+		final String dateNasc,
+		final String email,
+		final String telefone,
+		final String adress,
+		final String password,
+		final Usuario user )
+	{
+		// TODO Auto-generated method stub
+
+		final List<StatusCrudDto> listStatus = new ArrayList<>();
+
+		try
+		{
+			if ( !Validation.validateTelefone( telefone ) )
+			{
+				listStatus.add( new StatusCrudDto( StatusCrudEnum.TELEPHONE_INVALID, null ) );
+			}
+
+			if ( checkCpfUpdate( cpf ) )
+			{
+				listStatus.add( new StatusCrudDto( StatusCrudEnum.CPF_INVALID, null ) );
+			}
+
+			if ( !Validation.validateEmail( email ) )
+			{
+				listStatus.add( new StatusCrudDto( StatusCrudEnum.EMAIL_INVALID, null ) );
+			}
+
+			if ( !listStatus.isEmpty() )
+			{
+				return listStatus;
+			}
+
+			final Funcionario employee = user.getFuncionario();
+
+			if ( ( employee.getCpf().equals( cpf ) )
+				&& ( employee.getDtNascimento().equals( Conversion.convertDateSql( dateNasc ) ) )
+				&& ( employee.getEmail().equals( email ) )
+				&& ( adress.equals( employee.getEndereco() ) )
+				&& ( employee.getNome().equals( name ) )
+				&& ( employee.getTelefone().equals( telefone ) )
+				&& ( ( Objects.isNull( password ) ) || ( password.equals( "" ) ) ) )
+			{
+				listStatus.add( new StatusCrudDto( StatusCrudEnum.NO_CHANGE, null ) );
+				return listStatus;
+			}
+
+			if ( ( employee.getCpf().equals( cpf ) )
+				&& ( employee.getDtNascimento().equals( Conversion.convertDateSql( dateNasc ) ) )
+				&& ( employee.getEmail().equals( email ) )
+				&& ( adress.equals( employee.getEndereco() ) )
+				&& ( employee.getNome().equals( name ) )
+				&& ( employee.getTelefone().equals( telefone ) && ( Objects.nonNull( password ) ) ) )
+			{
+
+				if ( ( !password.equals( "" ) ) && password.equals( user.getPassword() ) )
+				{
+					listStatus.add( new StatusCrudDto( StatusCrudEnum.NO_CHANGE, null ) );
+					return listStatus;
+				}
+
+			}
+
+			employee.setNome( name );
+			employee.setCpf( cpf );
+			employee.setDtNascimento( Conversion.convertDateSql( dateNasc ) );
+			employee.setEmail( email );
+			employee.setTelefone( telefone );
+			employee.setEndereco( adress );
+
+			this.employeeDao.update( employee );
+
+			if ( Objects.nonNull( password ) )
+			{
+				if ( ( !password.equals( "" ) ) && !password.equals( user.getPassword() ) )
+				{
+					user.setPassword( password );
+					this.userDao.update( user );
+				}
+			}
+
+			listStatus.add( new StatusCrudDto( StatusCrudEnum.SUCCESS, null ) );
+
+		}
+
+		catch ( final Exception e )
+		{
+			LOG.error( e );
+			listStatus.add( new StatusCrudDto( StatusCrudEnum.ERROR, e.getMessage() ) );
+		}
+
+		return listStatus;
 	}
 
 	private boolean checkCpfAdd( final String cpf )
@@ -314,47 +493,58 @@ public class UserServiceImpl<T>
 	}
 
 	@Override
-	public void downloadPdf( final List<Usuario> listUsers, final OutputStream outputStream, Locale locale )
-			throws IOException
+	public void downloadPdf( final List<Usuario> listUsers, final OutputStream outputStream, final Locale locale )
+		throws IOException
+	{
+
+		final StringBuilder joinTextBody = new StringBuilder();
+
+		final List<String> titles = new ArrayList<String>();
+		titles.add( "Nome" );
+		titles.add( "Tipo Funcionario" );
+		titles.add( "Pode Agendar" );
+		titles.add( "CPF" );
+		titles.add( "Data Nascimento" );
+
+		final String titlePdf = "Funcionários";
+
+		joinTextBody.append( buildHeadHtmlPdf( titlePdf, titles, locale ) );
+
+		// columns
+		for ( final Usuario usuario : listUsers )
 		{
-			
-
-			StringBuilder joinTextBody = new StringBuilder();
-			
-			final List<String> titles = new ArrayList<String>();
-			titles.add( "Nome" );
-			titles.add( "Tipo Funcionario" );
-			titles.add( "Pode Agendar" );
-			titles.add( "CPF" );
-			titles.add( "Data Nascimento" );
-			
-			String titlePdf = "Funcionários";
-			
-			joinTextBody.append(buildHeadHtmlPdf(titlePdf,titles,locale));
-			
-			// columns
-			for ( final Usuario usuario : listUsers )
-			{
-				joinTextBody
-				.append(messageSource.getMessage("modelPdfBodyRow", new Object[]{}, locale))
-				.append(messageSource.getMessage("modelPdfBodyColumn", new Object[]{usuario.getFuncionario().getNome()}, locale))
-				.append(messageSource.getMessage("modelPdfBodyColumn", new Object[]{usuario.getTipoPerfil().getTipo().toString()}, locale));
-				final String marcaHora = usuario.getFuncionario().isMarcaHora() == true ? "SIM" : "NAO";
-				joinTextBody.append(messageSource.getMessage("modelPdfBodyColumn", new Object[]{marcaHora}, locale))
-				.append(messageSource.getMessage("modelPdfBodyColumn", new Object[]{usuario.getFuncionario().getCpf(),}, locale))
-				.append(messageSource.getMessage("modelPdfBodyColumn", new Object[]{Conversion.convertToDateString( usuario.getFuncionario().getDtNascimento() )}, locale))
-				.append(messageSource.getMessage("modelPdfBodyRowClose", new Object[]{}, locale));
-			}
-
-			joinTextBody.append(messageSource.getMessage("modelPdfBodyTableClose", new Object[]{}, locale));
-
-			HtmlConverter.convertToPdf( joinTextBody.toString(), outputStream );
-			outputStream.flush();
-			outputStream.close();
+			joinTextBody
+				.append( this.messageSource.getMessage( "modelPdfBodyRow", new Object[]{}, locale ) )
+				.append(
+					this.messageSource
+						.getMessage( "modelPdfBodyColumn", new Object[]{usuario.getFuncionario().getNome()}, locale ) )
+				.append(
+					this.messageSource
+						.getMessage(
+							"modelPdfBodyColumn",
+							new Object[]{usuario.getTipoPerfil().getTipo().toString()},
+							locale ) );
+			final String marcaHora = usuario.getFuncionario().isMarcaHora() == true ? "SIM" : "NAO";
+			joinTextBody
+				.append( this.messageSource.getMessage( "modelPdfBodyColumn", new Object[]{marcaHora}, locale ) )
+				.append(
+					this.messageSource
+						.getMessage( "modelPdfBodyColumn", new Object[]{usuario.getFuncionario().getCpf(),}, locale ) )
+				.append(
+					this.messageSource
+						.getMessage(
+							"modelPdfBodyColumn",
+							new Object[]{Conversion.convertToDateString( usuario.getFuncionario().getDtNascimento() )},
+							locale ) )
+				.append( this.messageSource.getMessage( "modelPdfBodyRowClose", new Object[]{}, locale ) );
 		}
-	
-	@Autowired
-	private MessageSource messageSource;
+
+		joinTextBody.append( this.messageSource.getMessage( "modelPdfBodyTableClose", new Object[]{}, locale ) );
+
+		HtmlConverter.convertToPdf( joinTextBody.toString(), outputStream );
+		outputStream.flush();
+		outputStream.close();
+	}
 
 	@Override
 	public Usuario getById( final Long id )
@@ -368,6 +558,181 @@ public class UserServiceImpl<T>
 	{
 		// TODO Auto-generated method stub
 		return this.userDao.getByLoginAndPassword( login, password );
+	}
+
+	@Override
+	public void getEmployeeRanking( final Usuario usuario, final ServletOutputStream outputStream )
+		throws IOException,
+			ParseException
+	{
+		// TODO Auto-generated method stub
+
+		final List<Servico> listServicos = this.serviceDao.listServicesByUserFor30Days( usuario );
+
+		final String nothing = "";
+
+		int cell = 0;
+		int column = 0;
+		final XSSFWorkbook wb = new XSSFWorkbook();
+
+		final List<String> titles = new ArrayList<String>();
+		titles.add( "ID_SERVICO" );
+		titles.add( "PEDIDOS" );
+		titles.add( "VALOR_TOTAL_DOS_PEDIDOS" );
+		titles.add( "DATA_DE_ABERTURA" );
+		titles.add( "DATA_DO_AGENDAMENTO" );
+		titles.add( "HORA_DO_AGENDAMENTO" );
+		titles.add( "CHECKIN" );
+		titles.add( "NOME_DO_CLIENTE" );
+		titles.add( "CPF_DO_CLIENTE" );
+		titles.add( "VALOR_TOTAL" );
+		boolean titleIsOK = false;
+		XSSFSheet abaPrimaria = wb.createSheet( "Ranking do Funcionário " + usuario.getFuncionario().getNome() );
+
+		if ( listServicos == null )
+		{
+			final XSSFRow linha = abaPrimaria.createRow( cell );
+			for ( final String title : titles )
+			{
+				final CellStyle style = wb.createCellStyle();
+				style.setFillForegroundColor( HSSFColor.GREEN.index );
+				linha.createCell( column ).setCellValue( title );
+				linha.getCell( column ).setCellStyle( style );
+				column++;
+			}
+			titleIsOK = true;
+
+			abaPrimaria = adaptColumnsExcel( column, abaPrimaria );
+		}
+		else
+		{
+			XSSFRow linha = null;
+			for ( final Servico servico : listServicos )
+			{
+				if ( !titleIsOK )
+				{
+					linha = abaPrimaria.createRow( cell );
+					for ( final String title : titles )
+					{
+						final CellStyle style = wb.createCellStyle();
+						style.setFillForegroundColor( HSSFColor.GREEN.index );
+						linha.createCell( column ).setCellValue( title );
+						linha.getCell( column ).setCellStyle( style );
+						column++;
+					}
+					titleIsOK = true;
+
+					abaPrimaria = adaptColumnsExcel( column, abaPrimaria );
+
+					column = 0;
+				}
+
+				cell++;
+				linha = abaPrimaria.createRow( cell );
+				column = 0;
+				if ( servico.getAgendamento() != null )
+				{
+
+					linha.createCell( column ).setCellValue( servico.getId() );
+					column++;
+					linha.createCell( column ).setCellValue( getJsonNameRequests( servico.getPedidoServico() ) );
+					column++;
+					linha
+						.createCell( column )
+						.setCellValue( calculateMoneyTotalRequests( servico.getPedidoServico() ) );
+					column++;
+					linha
+						.createCell( column )
+						.setCellValue( Conversion.convertToDateString( servico.getAgendamento().getDtAbertura() ) );
+					column++;
+					linha
+						.createCell( column )
+						.setCellValue( Conversion.convertToDateString( servico.getAgendamento().getData() ) );
+					column++;
+					linha
+						.createCell( column )
+						.setCellValue( Conversion.convertToTimeString( servico.getAgendamento().getHora() ) );
+					column++;
+					linha
+						.createCell( column )
+						.setCellValue( Conversion.convertToDateTimeString( servico.getAgendamento().getCheckin() ) );
+					column++;
+					linha.createCell( column ).setCellValue( servico.getCliente().getNome() );
+					column++;
+					linha.createCell( column ).setCellValue( servico.getCliente().getCpf() );
+
+					if ( cell == 1 )
+					{
+						column++;
+						linha.createCell( column ).setCellValue( calculateMoneyTotalService( listServicos ) );
+					}
+				}
+				else
+				{
+
+					linha.createCell( column ).setCellValue( servico.getId() );
+					column++;
+					linha.createCell( column ).setCellValue( getJsonNameRequests( servico.getPedidoServico() ) );
+					column++;
+					linha
+						.createCell( column )
+						.setCellValue( calculateMoneyTotalRequests( servico.getPedidoServico() ) );
+					column++;
+					linha
+						.createCell( column )
+						.setCellValue( Conversion.convertToDateString( servico.getDataCriacao() ) );
+					column++;
+					linha.createCell( column ).setCellValue( nothing );
+					column++;
+					linha.createCell( column ).setCellValue( nothing );
+					column++;
+					linha.createCell( column ).setCellValue( nothing );
+					column++;
+					linha.createCell( column ).setCellValue( servico.getCliente().getNome() );
+					column++;
+					linha.createCell( column ).setCellValue( servico.getCliente().getCpf() );
+
+					if ( cell == 1 )
+					{
+						column++;
+						linha.createCell( column ).setCellValue( calculateMoneyTotalService( listServicos ) );
+					}
+				}
+
+				// quando tiver futuras colunas
+				// column++;
+			}
+
+		}
+
+		wb.write( outputStream );
+		wb.close();
+
+		outputStream.flush();
+		outputStream.close();
+
+	}
+
+	private String getJsonNameRequests( final List<PedidoServico> listPedidoServico )
+	{
+
+		final StringBuilder str = new StringBuilder();
+		boolean first = true;
+		for ( final PedidoServico pedidoServico : listPedidoServico )
+		{
+			if ( !first )
+			{
+				str.append( "," );
+			}
+
+			final Pedido pedido = pedidoServico.getPedido();
+
+			str.append( pedido.getNome() );
+
+			first = false;
+		}
+
+		return str.toString();
 	}
 
 	@Override
@@ -486,7 +851,7 @@ public class UserServiceImpl<T>
 				&& ( endereco.equals( employee.getEndereco() ) )
 				&& ( employee.getNome().equals( nome ) )
 				&& ( employee.getTelefone().equals( telefone ) )
-				&& (user.getTipoPerfil().getTipo().equals(TypeProfile.valueOf( typeEmployee ))))
+				&& ( user.getTipoPerfil().getTipo().equals( TypeProfile.valueOf( typeEmployee ) ) ) )
 			{
 				listStatus.add( new StatusCrudDto( StatusCrudEnum.NO_CHANGE, null ) );
 				return listStatus;
@@ -530,271 +895,21 @@ public class UserServiceImpl<T>
 	}
 
 	@Autowired
+	private ClientDao clientDao;
+
+	@Autowired
 	private EmployeeDao employeeDao;
+
+	@Autowired
+	private MessageSource messageSource;
+
+	@Autowired
+	private ServiceDao serviceDao;
 
 	@Autowired
 	private TipoPerfilDao tipoPerfilDao;
 
 	@Autowired
 	private UserDao userDao;
-
-	@Override
-	public List<StatusCrudDto> changeData(String name, String cpf, String dateNasc, String email, String telefone, String adress,
-			String password, Usuario user) {
-		// TODO Auto-generated method stub
-		
-		final List<StatusCrudDto> listStatus = new ArrayList<>();
-		
-		try
-		{
-			if ( !Validation.validateTelefone( telefone ) )
-			{
-				listStatus.add( new StatusCrudDto( StatusCrudEnum.TELEPHONE_INVALID, null ) );
-			}
-
-			if ( checkCpfUpdate( cpf ) )
-			{
-				listStatus.add( new StatusCrudDto( StatusCrudEnum.CPF_INVALID, null ) );
-			}
-
-			if ( !Validation.validateEmail( email ) )
-			{
-				listStatus.add( new StatusCrudDto( StatusCrudEnum.EMAIL_INVALID, null ) );
-			}
-
-			if ( !listStatus.isEmpty() )
-			{
-				return listStatus;
-			}
-			
-			final Funcionario employee = user.getFuncionario();
-
-			if ( ( employee.getCpf().equals( cpf ) )
-				&& ( employee.getDtNascimento().equals( Conversion.convertDateSql( dateNasc ) ) )
-				&& ( employee.getEmail().equals( email ) )
-				&& ( adress.equals( employee.getEndereco() ) )
-				&& ( employee.getNome().equals( name ) )
-				&& ( employee.getTelefone().equals( telefone ) )
-				&& ((Objects.isNull(password)) || (password.equals(""))))
-			{
-				listStatus.add( new StatusCrudDto( StatusCrudEnum.NO_CHANGE, null ) );
-				return listStatus;
-			}
-			
-			if ( ( employee.getCpf().equals( cpf ) )
-					&& ( employee.getDtNascimento().equals( Conversion.convertDateSql( dateNasc ) ) )
-					&& ( employee.getEmail().equals( email ) )
-					&& ( adress.equals( employee.getEndereco() ) )
-					&& ( employee.getNome().equals( name ) )
-					&& ( employee.getTelefone().equals( telefone )
-					&& (Objects.nonNull(password))))
-			{
-					
-				if((!password.equals("")) && password.equals(user.getPassword()))
-				{
-					listStatus.add( new StatusCrudDto( StatusCrudEnum.NO_CHANGE, null ) );
-					return listStatus;
-				}
-					
-			}
-			
-			employee.setNome( name );
-			employee.setCpf( cpf );
-			employee.setDtNascimento( Conversion.convertDateSql( dateNasc ) );
-			employee.setEmail( email );
-			employee.setTelefone( telefone );
-			employee.setEndereco( adress );
-
-			this.employeeDao.update( employee );
-			
-			if(Objects.nonNull(password))
-			{
-				if((!password.equals("")) && !password.equals(user.getPassword()))
-				{
-					user.setPassword(password);
-					this.userDao.update(user);
-				}
-			}
-
-			
-			listStatus.add( new StatusCrudDto( StatusCrudEnum.SUCCESS, null ) );
-			
-		}
-		
-		catch(Exception e)
-		{
-			LOG.error( e );
-			listStatus.add( new StatusCrudDto( StatusCrudEnum.ERROR, e.getMessage() ) );
-		}
-		
-		
-		return listStatus;
-	}
-
-	@Override
-	public void getEmployeeRanking(Usuario usuario, ServletOutputStream outputStream) throws IOException, ParseException {
-		// TODO Auto-generated method stub
-
-		List<Servico> listServicos = this.serviceDao.listServicesByUserFor30Days(usuario);
-		
-		String nothing = "";
-		
-		int cell = 0;
-		int column = 0;
-		final XSSFWorkbook wb = new XSSFWorkbook();
-
-		final List<String> titles = new ArrayList<String>();
-		titles.add("ID_SERVICO" );
-		titles.add("PEDIDOS");
-		titles.add("VALOR_TOTAL_DOS_PEDIDOS");
-		titles.add("DATA_DE_ABERTURA");
-		titles.add("DATA_DO_AGENDAMENTO");
-		titles.add("HORA_DO_AGENDAMENTO");
-		titles.add("CHECKIN");
-		titles.add("NOME_DO_CLIENTE");
-		titles.add("CPF_DO_CLIENTE");
-		titles.add("VALOR_TOTAL");
-		boolean titleIsOK = false;
-		XSSFSheet abaPrimaria = wb.createSheet( "Ranking do Funcionário "+usuario.getFuncionario().getNome() );
-		
-		if(listServicos == null)
-		{
-			final XSSFRow linha = abaPrimaria.createRow( cell );
-			for ( final String title : titles )
-			{
-				final CellStyle style = wb.createCellStyle();
-				style.setFillForegroundColor( HSSFColor.GREEN.index );
-				linha.createCell( column ).setCellValue( title );
-				linha.getCell( column ).setCellStyle( style );
-				column++;
-			}
-			titleIsOK = true;
-
-			abaPrimaria = adaptColumnsExcel( column, abaPrimaria );
-		}
-		else
-		{
-			XSSFRow linha = null;
-			for ( final Servico servico : listServicos )
-			{
-				if ( !titleIsOK )
-				{
-					linha = abaPrimaria.createRow( cell );
-					for ( final String title : titles )
-					{
-						final CellStyle style = wb.createCellStyle();
-						style.setFillForegroundColor( HSSFColor.GREEN.index );
-						linha.createCell( column ).setCellValue( title );
-						linha.getCell( column ).setCellStyle( style );
-						column++;
-					}
-					titleIsOK = true;
-	
-					abaPrimaria = adaptColumnsExcel( column, abaPrimaria );
-	
-					column = 0;
-				}
-	
-				cell++;
-				linha = abaPrimaria.createRow( cell );
-				column = 0;
-				if(servico.getAgendamento() != null)
-				{
-					
-						
-						linha.createCell( column ).setCellValue( servico.getId() );
-						column++;
-						linha.createCell( column ).setCellValue( getJsonNameRequests(servico.getPedidoServico()) );
-						column++;
-						linha.createCell( column ).setCellValue( calculateMoneyTotalRequests(servico.getPedidoServico()));
-						column++;
-						linha.createCell( column ).setCellValue(Conversion.convertToDateString(servico.getAgendamento().getDtAbertura()));
-						column++;
-						linha.createCell( column ).setCellValue(Conversion.convertToDateString(servico.getAgendamento().getData()));
-						column++;
-						linha.createCell( column ).setCellValue(Conversion.convertToTimeString(servico.getAgendamento().getHora()));
-						column++;
-						linha.createCell( column ).setCellValue(Conversion.convertToDateTimeString(servico.getAgendamento().getCheckin()));
-						column++;
-						linha.createCell( column ).setCellValue(servico.getCliente().getNome());
-						column++;
-						linha.createCell( column ).setCellValue(servico.getCliente().getCpf());
-						
-						if(cell == 1)
-						{
-							column++;
-							linha.createCell( column ).setCellValue(calculateMoneyTotalService(listServicos));
-						}
-				}
-				else
-				{
-						
-						linha.createCell( column ).setCellValue( servico.getId() );
-						column++;
-						linha.createCell( column ).setCellValue( getJsonNameRequests(servico.getPedidoServico()) );
-						column++;
-						linha.createCell( column ).setCellValue( calculateMoneyTotalRequests(servico.getPedidoServico()));
-						column++;
-						linha.createCell( column ).setCellValue( Conversion.convertToDateString(servico.getDataCriacao()) );
-						column++;
-						linha.createCell( column ).setCellValue(nothing);
-						column++;
-						linha.createCell( column ).setCellValue(nothing);
-						column++;
-						linha.createCell( column ).setCellValue(nothing);
-						column++;
-						linha.createCell( column ).setCellValue(servico.getCliente().getNome());
-						column++;
-						linha.createCell( column ).setCellValue(servico.getCliente().getCpf());
-						
-						if(cell == 1)
-						{
-							column++;
-							linha.createCell( column ).setCellValue(calculateMoneyTotalService(listServicos));
-						}
-				}
-				
-				
-			
-				// quando tiver futuras colunas
-				// column++;
-			}
-			
-			
-		}
-
-		wb.write( outputStream );
-		wb.close();
-
-		outputStream.flush();
-		outputStream.close();
-
-		
-	}
-	
-	private String getJsonNameRequests(List<PedidoServico> listPedidoServico)
-	{
-		
-		StringBuilder str = new StringBuilder();
-		boolean first = true;
-		for(PedidoServico pedidoServico : listPedidoServico )
-		{
-			if(!first)
-			{
-				str.append(",");
-			}
-			
-			Pedido pedido = pedidoServico.getPedido();
-			
-			str.append(pedido.getNome());
-			
-			first = false;
-		}
-		
-		return str.toString();
-	}
-	
-	@Autowired
-	private ServiceDao serviceDao;
 
 }

@@ -16,5 +16,25 @@ import org.springframework.data.util.Pair;
 public interface RegisterServiceApp
 {
 
+	/**
+	 * <p>
+	 * </p>
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	Pair<Boolean, HashMap<String, Object>> createClient( RegisterDto dto );
+
+	Pair<Boolean, HashMap<String, Object>> validFieldsForConfirmCodeVerification( RegisterDto dto );
+
+	/**
+	 * <p>
+	 * </p>
+	 *
+	 * @param dto
+	 * @return
+	 */
+	Pair<Boolean, HashMap<String, Object>> validFieldsForRegisterUser( RegisterDto dto );
+
 	Pair<Boolean, HashMap<String, Object>> validFieldsForSendEmail( RegisterDto dto );
 }

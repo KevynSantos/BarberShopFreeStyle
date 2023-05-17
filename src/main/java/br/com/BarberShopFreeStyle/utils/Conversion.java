@@ -91,6 +91,12 @@ public class Conversion {
 		return new java.sql.Date(data.getTime());
 	}
 	
+	public static java.sql.Date convertDateSqlApp(String dateStr) throws ParseException
+	{
+		Date data = new SimpleDateFormat("dd/MM/yyyy").parse(dateStr);
+		return new java.sql.Date(data.getTime());
+	}
+	
 	public static java.sql.Time convertTimeSql(String hourStr) throws ParseException
 	{
 		return java.sql.Time.valueOf(hourStr+":00");

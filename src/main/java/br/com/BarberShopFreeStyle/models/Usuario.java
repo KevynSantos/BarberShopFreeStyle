@@ -12,85 +12,104 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario")
-public class Usuario {
+@Table( name = "usuario" )
+public class Usuario
+{
 
-	private Long id;
-
-	@Id
-	@Column( name = "id_usuario")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Long getId() {
-		return id;
+	@JoinColumn( name = "id_cliente" )
+	@OneToOne
+	public Cliente getCliente()
+	{
+		return this.cliente;
 	}
 
-	public void setId(Long id) {
+	@Column( name = "data_exclusao" )
+	public Date getDataExclusao()
+	{
+		return this.dataExclusao;
+	}
+
+	@JoinColumn( name = "id_funcionario" )
+	@OneToOne
+	public Funcionario getFuncionario()
+	{
+		return this.funcionario;
+	}
+
+	@Id
+	@Column( name = "id_usuario" )
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	public Long getId()
+	{
+		return this.id;
+	}
+
+	@Column( name = "login" )
+	public String getLogin()
+	{
+		return this.login;
+	}
+
+	@Column( name = "senha" )
+	public String getPassword()
+	{
+		return this.password;
+	}
+
+	@JoinColumn( name = "id_tipo_perfil" )
+	@OneToOne
+	public TipoPerfil getTipoPerfil()
+	{
+		return this.tipoPerfil;
+	}
+
+	public void setCliente( final Cliente cliente )
+	{
+		this.cliente = cliente;
+	}
+
+	public void setDataExclusao( final Date dataExclusao )
+	{
+		this.dataExclusao = dataExclusao;
+	}
+
+	public void setFuncionario( final Funcionario funcionario )
+	{
+		this.funcionario = funcionario;
+	}
+
+	public void setId( final Long id )
+	{
 		this.id = id;
 	}
 
-	@Column(name = "login")
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
+	public void setLogin( final String login )
+	{
 		this.login = login;
 	}
 
-	@Column(name = "senha")
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
+	public void setPassword( final String password )
+	{
 		this.password = password;
 	}
 
-	@JoinColumn(name = "id_tipo_perfil")
-	@OneToOne
-	public TipoPerfil getTipoPerfil() {
-		return tipoPerfil;
-	}
-
-	public void setTipoPerfil(TipoPerfil tipoPerfil) {
+	public void setTipoPerfil( final TipoPerfil tipoPerfil )
+	{
 		this.tipoPerfil = tipoPerfil;
 	}
 
-	@JoinColumn(name = "id_funcionario")
-	@OneToOne
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
+	private Cliente cliente;
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
+	private Date dataExclusao;
+
+	private Funcionario funcionario;
+
+	private Long id;
 
 	private String login;
 
 	private String password;
 
 	private TipoPerfil tipoPerfil;
-
-	private Funcionario funcionario;
-	
-	private Date dataExclusao;
-
-	@Column(name = "data_exclusao")
-	public Date getDataExclusao() {
-		return dataExclusao;
-	}
-
-	public void setDataExclusao(Date dataExclusao) {
-		this.dataExclusao = dataExclusao;
-	}
-
-	
-	
-
-	
-	
-	
-	
 
 }

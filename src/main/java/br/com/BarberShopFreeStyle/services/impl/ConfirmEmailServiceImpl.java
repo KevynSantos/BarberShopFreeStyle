@@ -77,6 +77,22 @@ public class ConfirmEmailServiceImpl
 	/**
 	 * <p>
 	 * </p>
+	 * 
+	 * @param email
+	 * @param code
+	 * @return
+	 * @see br.com.BarberShopFreeStyle.services.ConfirmEmailService#getByEmailAndCode(java.lang.String,
+	 *      java.lang.String)
+	 */
+	@Override
+	public ConfirmEmail getByEmailAndCode( final String email, final String code )
+	{
+		return this.confirmEmailDao.getByEmailAndCode( email, code );
+	}
+
+	/**
+	 * <p>
+	 * </p>
 	 *
 	 * @param id
 	 * @return
@@ -105,6 +121,30 @@ public class ConfirmEmailServiceImpl
 	/**
 	 * <p>
 	 * </p>
+	 * 
+	 * @param email
+	 * @param code
+	 * @return
+	 * @see br.com.BarberShopFreeStyle.services.ConfirmEmailService#save(java.lang.String,
+	 *      java.lang.String)
+	 */
+	@Override
+	public ConfirmEmail save( final String email, final String code )
+	{
+		final ConfirmEmail object = new ConfirmEmail();
+
+		object.setEmail( email );
+		object.setDate( new Date() );
+		object.setCode( code );
+
+		final ConfirmEmail objectSave = this.confirmEmailDao.insert( object );
+
+		return objectSave;
+	}
+
+	/**
+	 * <p>
+	 * </p>
 	 *
 	 * @param entity
 	 * @return
@@ -116,28 +156,6 @@ public class ConfirmEmailServiceImpl
 		return null;
 	}
 
-	/**
-	 * <p>
-	 * </p>
-	 * @param email
-	 * @param code
-	 * @return
-	 * @see br.com.BarberShopFreeStyle.services.ConfirmEmailService#save(java.lang.String, java.lang.String)
-	 */
-	@Override
-	public ConfirmEmail save( String email, String code )
-	{
-		ConfirmEmail object = new ConfirmEmail();
-		
-		object.setEmail(email);
-		object.setDate( new Date() );
-		object.setCode( code );
-		
-		ConfirmEmail objectSave = this.confirmEmailDao.insert( object );
-		
-		return objectSave;
-	}
-	
 	@Autowired
 	private ConfirmEmailDao confirmEmailDao;
 
