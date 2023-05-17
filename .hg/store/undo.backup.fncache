@@ -436,3 +436,5 @@ data/release BarberShopFreeStyle.txt.i
 data/src/main/resources/img/barbearia-fundo-index-orig-to-pdf.png.d
 data/src/main/resources/img/barbearia-fundo-index-orig-to-pdf.png.i
 data/src/main/resources/messages_en_US.properties.i
+data/src/main/java/br/com/BarberShopFreeStyle/api/LoginApp.java.i
+data/src/main/java/br/com/BarberShopFreeStyle/api/messages/MessagesApi.java.i

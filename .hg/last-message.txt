@@ -1,3 +1,1 @@
-Criando tipo perfil cliente
-
-Criando API para acesso ao App
+Adicionando envio de código de verificação por e-mail

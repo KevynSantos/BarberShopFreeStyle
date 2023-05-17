@@ -37,14 +37,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RegisterApp
 {
 
+	private RegisterDto getDtoRegister( final MultiValueMap<String, Object> info )
+	{
+		final Map<String, Object> map = info.toSingleValueMap();
+		final ObjectMapper mapper = new ObjectMapper();
+		final RegisterDto dto = mapper.convertValue( map, RegisterDto.class );
+
+		return dto;
+	}
+
 	@PostMapping( value = "/sendCodeVerificationEmail", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
-	public String sendCodeVerificationEmail( @RequestBody final MultiValueMap<String, String> info )
+	public String sendCodeVerificationEmail( @RequestBody final MultiValueMap<String, Object> info )
 		throws JsonProcessingException
 	{
 		final HashMap<String, Object> result = new HashMap<>();
-		final Map<String, String> map = info.toSingleValueMap();
-		final ObjectMapper mapper = new ObjectMapper();
-		final RegisterDto dto = mapper.convertValue( map, RegisterDto.class );
+
+		final RegisterDto dto = getDtoRegister( info );
+
 		final Pair<Boolean, HashMap<String, Object>> pair = this.registerServiceApp.validFieldsForSendEmail( dto );
 
 		if ( !pair.getFirst() )
