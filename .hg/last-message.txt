@@ -1,1 +1,1 @@
-Aperfeiçando controller de envio de código de verificação
+Confirmação de código de verificação e cadastro do usuario no app
