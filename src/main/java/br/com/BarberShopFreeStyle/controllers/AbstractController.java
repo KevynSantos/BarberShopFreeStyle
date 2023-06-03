@@ -33,6 +33,14 @@ public class AbstractController {
 		
 	}
 	
+	public void throwNoUserLogged(Usuario user)
+	{
+		if(user == null)
+		{
+			throw new IllegalStateException( "No user logged" );
+		}
+	}
+	
 	public ModelAndView checkPermissionProfile(Usuario user, Access funcionality, ModelAndView view) 
 	{
 		if((funcionality.equals(Access.PODE_AGENDAR) && !user.getFuncionario().isMarcaHora() && user.getTipoPerfil().getTipo() != TypeProfile.ADMINISTRADOR) 

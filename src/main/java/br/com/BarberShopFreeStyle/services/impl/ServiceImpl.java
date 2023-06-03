@@ -128,18 +128,18 @@ public class ServiceImpl<T>
 
 			Predicate conditions = c.conjunction();
 
-			if ( pedido != "" )
+			if ( pedido != "" && pedido != null )
 			{
 				conditions = c
 					.and( conditions, c.equal( root.join( "pedidoServico" ).get( "pedido" ).get( "nome" ), pedido ) );
 			}
 
-			if ( cpf != "" )
+			if ( cpf != "" && cpf != null )
 			{
 				conditions = c.and( conditions, c.equal( root.get( "cliente" ).get( "cpf" ), cpf ) );
 			}
 
-			if ( ( dataInicial != "" ) && ( dataFinal != "" ) )
+			if ( ( dataInicial != "" && dataInicial != null ) && ( dataFinal != "" && dataFinal != null ) )
 			{
 				try
 				{
@@ -154,7 +154,7 @@ public class ServiceImpl<T>
 
 					final Date date2 = Conversion.calendarToDate( calendar );
 
-					if ( status == null )
+					if ( status == null || status == "" )
 					{
 						conditions = c
 							.and(
@@ -180,7 +180,7 @@ public class ServiceImpl<T>
 				conditions = c.and( conditions, c.equal( root.get( "status" ), StatusService.valueOf( status ) ) );
 			}
 
-			if ( status == null )
+			if ( status == null || status == "" )
 			{
 				query
 					.orderBy(
