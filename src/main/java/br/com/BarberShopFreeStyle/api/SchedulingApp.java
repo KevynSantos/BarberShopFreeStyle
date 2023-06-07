@@ -1,12 +1,15 @@
 package br.com.BarberShopFreeStyle.api;
 
 import br.com.BarberShopFreeStyle.controllers.AbstractController;
+import br.com.BarberShopFreeStyle.dtos.app.ListagemAgendamentosApp;
 import br.com.BarberShopFreeStyle.models.Servico;
 import br.com.BarberShopFreeStyle.models.Usuario;
+import br.com.BarberShopFreeStyle.services.SchedulingService;
 import br.com.BarberShopFreeStyle.services.Service;
 import br.com.BarberShopFreeStyle.services.UserService;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -77,7 +80,9 @@ public class SchedulingApp
 					cpfEmployee,
 					speciality );
 
-			result.put( "agendamentos", page.getContent() );
+			final List<ListagemAgendamentosApp> list = this.schedulingService.buildDtoForListSchedulesInApp( page );
+
+			result.put( "agendamentos", list );
 			result.put( "totalElements", page.getTotalElements() );
 			result.put( "code", "SUCCESS" );
 		}
@@ -93,6 +98,9 @@ public class SchedulingApp
 		response.setHeader( "Content-Type", "application/octet-stream" );
 
 	}
+
+	@Autowired
+	private SchedulingService schedulingService;
 
 	@Autowired
 	private Service service;

@@ -1,5 +1,6 @@
 package br.com.BarberShopFreeStyle.services;
 
+
 import br.com.BarberShopFreeStyle.dtos.IntervalHoursScheduling;
 import br.com.BarberShopFreeStyle.dtos.StatusCrudDto;
 import br.com.BarberShopFreeStyle.enums.IntervalStatus;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.ServletOutputStream;
+
+import org.springframework.data.domain.Page;
 
 public interface SchedulingService
 	extends AbstractService<Agendamento, Long>
@@ -51,5 +54,12 @@ public interface SchedulingService
 	boolean checkintervalRangeTimeRequests(String data, String time, List<Pedido> listRequests, Usuario usuario, IntervalStatus intervalStatus, Servico servico) throws ParseException;
 	
 	List<IntervalHoursScheduling> getHoursByDate(String date, Usuario user);
+
+	/**
+	 * <p></p>
+	 * @param page 
+	 * @return
+	 */
+	List<br.com.BarberShopFreeStyle.dtos.app.ListagemAgendamentosApp> buildDtoForListSchedulesInApp(Page<Servico> page);
 
 }

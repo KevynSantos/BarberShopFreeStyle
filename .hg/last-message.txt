@@ -1,1 +1,1 @@
-Confirmação de código de verificação e cadastro do usuario no app
+Adicionando comunicação do back-end com o app para a listagem de agendamentos
