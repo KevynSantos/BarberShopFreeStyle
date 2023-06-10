@@ -2,6 +2,7 @@ package br.com.BarberShopFreeStyle.api;
 
 import br.com.BarberShopFreeStyle.controllers.AbstractController;
 import br.com.BarberShopFreeStyle.dtos.app.ListagemAgendamentosApp;
+import br.com.BarberShopFreeStyle.enums.TypeProfile;
 import br.com.BarberShopFreeStyle.models.Servico;
 import br.com.BarberShopFreeStyle.models.Usuario;
 import br.com.BarberShopFreeStyle.services.SchedulingService;
@@ -78,7 +79,7 @@ public class SchedulingApp
 					horaFinal,
 					user,
 					cpfEmployee,
-					speciality );
+					speciality,user.getTipoPerfil().getTipo().equals( TypeProfile.CLIENTE ) );
 
 			final List<ListagemAgendamentosApp> list = this.schedulingService.buildDtoForListSchedulesInApp( page );
 

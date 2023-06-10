@@ -216,7 +216,7 @@ public class ServiceController
 				null,
 				user,
 				cpfEmployee,
-				speciality );
+				speciality,false );
 
 		if ( outType.indexOf( "json" ) != -1 )
 		{

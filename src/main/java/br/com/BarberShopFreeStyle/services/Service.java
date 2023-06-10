@@ -42,7 +42,7 @@ public interface Service
 		String horaFinal,
 		Usuario user,
 		String cpfEmployee,
-		String speciality )
+		String speciality, boolean isClient )
 		throws Exception;
 
 	void update( Long serviceId, String cpf, StatusService status );

@@ -109,6 +109,80 @@ public class ServiceImpl<T>
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private Specification<T> buildSpecificationApp(
+		Cliente client,String dataInicial,String dataFinal,String horaInicial, String horaFinal)
+	{
+		return ( root, query, c ) -> {
+
+			query.distinct( true );
+
+			Predicate conditions = c.conjunction();
+			
+			conditions = c.and( conditions, c.equal( root.get( "cliente" ).get( "cpf" ), client.getCpf() ) );
+			
+			conditions = c.and( conditions, c.isNull( root.get( "dataFinalizacao" ) ) );
+
+			if ( ( dataInicial != "" && dataInicial != null ) && ( dataFinal != "" && dataFinal != null ) )
+			{
+				try
+				{
+					final Date convertDate1 = Conversion.convertDate( dataInicial );
+					final Date convertDate2 = Conversion.convertDate( dataFinal );
+					final Calendar calendar = Conversion.dateToCalendar( convertDate2 );
+
+					calendar.set( Calendar.HOUR_OF_DAY, 23 );
+					calendar.set( Calendar.MINUTE, 59 );
+					calendar.set( Calendar.SECOND, 59 );
+					calendar.set( Calendar.MILLISECOND, 999 );
+
+					final Date date2 = Conversion.calendarToDate( calendar );
+
+					conditions = c
+						.and(
+							conditions,
+							c.between( root.join( "agendamento" ).get( "data" ), convertDate1, date2 ) );
+					
+
+				}
+				catch ( final ParseException e )
+				{
+
+					LOG.error( e );
+				}
+			}
+			
+			if ( ( ( horaInicial != "" ) && ( horaInicial != null ) )
+							&& ( ( horaFinal != "" ) && ( horaFinal != null ) ) )
+			{
+				try
+				{
+					conditions = c
+						.and(
+							conditions,
+							c
+								.and(
+									c
+										.greaterThanOrEqualTo(
+											root.join( "agendamento" ).get( "hora" ),
+											Conversion.convertTimeSql( horaInicial ) ),
+									c
+										.lessThanOrEqualTo(
+											root.join( "agendamento" ).get( "hora" ),
+											Conversion.convertTimeSql( horaFinal ) ) ) );
+				}
+				catch ( final ParseException e )
+				{
+	
+					LOG.error( e );
+				}
+	
+			}
+
+			return conditions;
+
+		};
+	}
 
 	private Specification<T> buildSpecification(
 		final String pedido,
@@ -419,22 +493,33 @@ public class ServiceImpl<T>
 		final String horaFinal,
 		final Usuario user,
 		final String cpfEmployee,
-		final String speciality )
+		final String speciality,
+		final boolean isClient)
 		throws Exception
 	{
 
 		final TypeProfile typeProfile = TypeProfile.getEnum( speciality );
-		final Specification<T> specification = buildSpecification(
-			pedido,
-			cpf,
-			dataInicial,
-			dataFinal,
-			status,
-			horaInicial,
-			horaFinal,
-			user,
-			cpfEmployee,
-			typeProfile );
+		final Specification<T> specification;
+		
+		if(isClient)
+		{
+			specification = buildSpecificationApp(user.getCliente(),dataInicial,dataFinal,horaInicial,horaFinal);
+		}
+		else
+		{
+			specification = buildSpecification(
+				pedido,
+				cpf,
+				dataInicial,
+				dataFinal,
+				status,
+				horaInicial,
+				horaFinal,
+				user,
+				cpfEmployee,
+				typeProfile );
+		}
+		
 		// TODO Auto-generated method stub
 
 		return this.servicoDao.listServices( specification, pageNumber, pageSize );

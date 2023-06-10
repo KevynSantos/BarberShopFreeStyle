@@ -168,7 +168,7 @@ public class SchedulingController
 				horaFinal,
 				user,
 				cpfEmployee,
-				speciality );
+				speciality,false );
 
 		if ( outType.indexOf( "json" ) != -1 )
 		{
