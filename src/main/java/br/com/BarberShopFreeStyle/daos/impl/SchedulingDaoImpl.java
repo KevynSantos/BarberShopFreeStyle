@@ -1,4 +1,5 @@
 package br.com.BarberShopFreeStyle.daos.impl;
+import java.math.BigInteger;
 import java.sql.Time;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -383,7 +384,7 @@ public class SchedulingDaoImpl<R> extends AbstractDaoImpl<Agendamento> implement
 			return true;
 		}
 		
-		final long result = ( ( Integer ) res.get( 0 ) ).longValue();
+		final long result = ((BigInteger) res.get( 0 )).longValue();
 		
 		entityManager.close();
 		

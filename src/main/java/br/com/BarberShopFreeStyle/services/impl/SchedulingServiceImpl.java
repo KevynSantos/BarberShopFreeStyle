@@ -53,6 +53,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itextpdf.html2pdf.HtmlConverter;
 
@@ -66,6 +67,7 @@ public class SchedulingServiceImpl
 	private static final Log LOG = LogFactory.getLog( SchedulingServiceImpl.class );
 
 	@Override
+	@Transactional
 	public List<StatusCrudDto> addScheduling(
 		final String cpf,
 		final String[] pedidos,
@@ -121,7 +123,7 @@ public class SchedulingServiceImpl
 		}
 		catch ( final Exception e )
 		{
-			LOG.error( e );
+			LOG.error( e,e );
 			result.add( new StatusCrudDto( StatusCrudEnum.ERROR, e.getMessage() ) );
 		}
 
