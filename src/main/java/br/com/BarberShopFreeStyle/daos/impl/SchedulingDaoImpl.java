@@ -186,8 +186,12 @@ public class SchedulingDaoImpl<R> extends AbstractDaoImpl<Agendamento> implement
 	      .atZone(ZoneId.systemDefault())
 	      .toLocalDate();
 		
+		java.sql.Date sqlDateNow = new java.sql.Date(now.getTime());
+		
 		java.sql.Date dateSql = Conversion.convertDateSql(date);
-		if(now.after( dateSql ))
+		LocalDate localDateNow = sqlDateNow.toLocalDate();
+		LocalDate localDateInformed = dateSql.toLocalDate();
+		if(localDateNow.isAfter( localDateInformed ))
 		{
 			return false;
 		}
