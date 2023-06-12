@@ -59,7 +59,7 @@ body {
 <tr><td><hr></td></tr>
 <tr><td class="td_login"><a href='#' class='changeDataBtn'>Alterar Dados</a></td></tr>
 <tr th:if="${user.tipoPerfil.getTipo().name()=='ADMINISTRADOR'}"><td class="td_login"><a href='/management' onClick="localStorage.clear();">Gestão</a></td></tr>
-<tr><td><a href="/us/logoff" onClick="localStorage.clear();">Sair</a></td></tr>
+<tr><td><a th:href="@{/us/logoff}" onClick="localStorage.clear();">Sair</a></td></tr>
 </table>
 </div>
 
