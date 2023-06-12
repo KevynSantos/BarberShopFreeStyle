@@ -252,6 +252,8 @@ public class UserServiceImpl<T>
 				.join( "tipoPerfil" );
 
 			Predicate conditions = c.and( c.notEqual( joinTipoPerfil.get( "tipo" ), TypeProfile.ADMINISTRADOR ) );
+			
+			conditions = c.and( conditions, c.notEqual( joinTipoPerfil.get( "tipo" ), TypeProfile.CLIENTE ) );
 
 			conditions = c.and( conditions, c.isNull( root.get( "dataExclusao" ) ) );
 
